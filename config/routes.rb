@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
-  resources :business_cards
-  resources :users
+  
   root to: 'users#index'
+  
+  resources :users do
+    resources :business_cards
+  end
+  
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

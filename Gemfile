@@ -3,9 +3,11 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
+#gem 'rails-footnotes', '~> 4.1.7'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
+#gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -26,14 +28,21 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'bootsy', '~> 2.1.0'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
-gem 'carrierwave'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'mini_magick', '~> 4.3.3'
 
+# Use Carrierwave to upload images to app
+# mini-magick => image editor
+# bootsy => image editor via bootstrap3
+gem 'carrierwave'
+gem 'mini_magick', '~> 4.3.3'
+gem 'bootsy', '~> 2.1.0'
+
+# ???????????
 gem 'remotipart', '~> 1.2.1'
 
 group :development, :test do
@@ -47,6 +56,4 @@ group :development, :test do
   gem 'spring'
 end
 
-gem 'rails-footnotes', '~> 4.1.7'
 
-gem 'bootstrap-sass', '~> 3.3.5.1'

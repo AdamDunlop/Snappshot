@@ -3,6 +3,7 @@
 <head>
   <title>Snappshot</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -24,12 +25,35 @@
 
       </ul>
     </div>
-    </div>
   </div>
 </nav>
 
 
 
+    <div class="menu-container">
+ 
+        <div id="menu-toggle-primary">
+            <a class="close-menu-primary" href="#"><span>Close this menu</span></a>
+        </div><!-- .menu-toggle -->
+ 
+        <div class="wrap">
+            <ul class="menu-items" id="menu-primary-items">
+                <li class="menu-item"><%= link_to "Home", root_path %></li>
+                <li class="menu-item"><%= link_to "About Us", root_path %></li>
+                <li class="menu-item"><%= link_to "Contacts", root_path %>
+
+                    <ul class="sub-menu">
+                        <li class="menu-item"><%= link_to "Calendar", root_path %></li>
+                        <li class="menu-item"><%= link_to "Business Card", root_path %></li>
+                    </ul>
+                </li>
+                <li class="menu-item"><%= link_to "Login", root_path %></li>
+            </ul>
+        </div><!-- .wrap -->
+    </div><!-- .menu-container -->
+</nav>
+
+>>>>>>> 82e86a481a1ba8b61e57a0550b234beafe90ec1e
 <%= yield %>
 
 </body>
