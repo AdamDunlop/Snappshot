@@ -3,16 +3,14 @@
 <head>
   <title>Snappshot</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body> 
 
-
-
-<nav id="menu-primary">
-
-       <a class="navbar-brand" href="/">Snappshot</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <a class="navbar-brand" href="/">Snappshot</a>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/business_cards">Input Business Card</a></li>
@@ -23,7 +21,6 @@
     <div class="menu-container">
  
         <div id="menu-toggle-primary">
-            <a class="open-menu-primary" href="#menu-primary"><span>Open this menu</span></a>
             <a class="close-menu-primary" href="#"><span>Close this menu</span></a>
         </div><!-- .menu-toggle -->
  
@@ -41,12 +38,8 @@
                 <li class="menu-item"><%= link_to "Login", root_path %></li>
             </ul>
         </div><!-- .wrap -->
- 
     </div><!-- .menu-container -->
- 
 </nav>
-
-</div>
 
 <%= yield %>
 
