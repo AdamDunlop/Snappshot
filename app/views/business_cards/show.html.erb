@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag(@business_card.image) %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @business_card.name %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @business_card.company %>
+</p>
+
+<p>
+  <strong>Job title:</strong>
+  <%= @business_card.job_title %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @business_card.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @business_card.email %>
+</p>
+
+<p>
+  <strong>Company address:</strong>
+  <%= @business_card.company_address %>
+</p>
+
+<%= link_to 'Edit', edit_business_card_path(@business_card) %> |
+<%= link_to 'Back', business_cards_path %>
