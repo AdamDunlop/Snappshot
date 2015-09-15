@@ -1,4 +1,5 @@
-require 'tesseract'  
+require 'tesseract'
+ 
 
 class BusinessCardsController < ApplicationController
 
@@ -29,7 +30,23 @@ class BusinessCardsController < ApplicationController
   # POST /business_cards
   # POST /business_cards.json
   def create
+
     @business_card = BusinessCard.new(business_card_params)
+    # #BEGIN ocr text extrtaction
+
+    file = params[:business_card][:image].tempfile.path
+    e = Tesseract::Engine.new { |e| e.language = :eng }
+    raw_text = e.text_for(file)
+
+    # byebug
+    @business_card.ocr_text = raw_text
+    # @business_card.image = file
+    
+      # raw_text = e.text_for(@business_card.image).strip
+      
+
+
+    # #END
 
     respond_to do |format|
       if @business_card.save
@@ -74,6 +91,6 @@ class BusinessCardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_card_params
-      params.require(:business_card).permit(:name, :company, :job_title, :phone, :email, :company_address, :image)
+      params.require(:business_card).permit(:name, :company, :job_title, :phone, :email, :company_address, :image, :ocr_text)
     end
 end

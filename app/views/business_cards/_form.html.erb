@@ -1,3 +1,5 @@
+
+
 <%= form_for(@business_card) do |f| %>
   <% if @business_card.errors.any? %>
     <div id="error_explanation">
@@ -14,8 +16,6 @@
   <div class="field">
     <%= f.label :image %> <br>
     <%= f.file_field :image %>
-    
-
   </div>
   <div class="field">
     <%= f.label :name %><br>
@@ -41,17 +41,13 @@
     <%= f.label :company_address %><br>
     <%= f.text_field :company_address %>
   </div>
+<!--     <div class="field">
+    <%= f.label :ocr_text %><br>
+    <%= f.text_field :ocr_text %>
+  </div> -->
+
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
-
-/ <script type="text/javascript">
-// $("business_card".bind('change', function(){
-//   size_in_megabytes = this.files[0].size/1024/1024;
-//   if size_in_megabytes > 5) {
-//   alert("Max file is 5MB. Choose smaller image");
-// }
-// });
   
-// </script>
+<% end %>

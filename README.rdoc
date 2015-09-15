@@ -31,4 +31,4 @@ Step 1.
 
 install leptonica-dev
 intall libtesseract-dev
-bunlde install
+bundle install

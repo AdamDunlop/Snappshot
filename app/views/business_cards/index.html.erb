@@ -7,11 +7,8 @@
     <tr>
       <th>Image</th>
       <th>Name</th>
-      <th>Company</th>
-      <th>Job title</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Company address</th>
+      <th>Information</th>
+      <th>Action</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,16 +19,19 @@
         
         <td><%= image_tag(business_card.image) %></td>
         <td><%= business_card.name %></td>
-        <td><%= business_card.company %></td>
+ <!--        <td><%= business_card.company %></td>
         <td><%= business_card.job_title %></td>
         <td><%= business_card.phone %></td>
         <td><%= business_card.email %></td>
-        <td><%= business_card.company_address %></td>
-      </tr>
-       <p><%= link_to 'Show', business_card %></p>
-        <p><%= link_to 'Edit', edit_business_card_path(business_card) %></p>
-        <p><%= link_to 'Destroy', business_card, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        <td><%= business_card.company_address %></td> -->
+        <td><%= business_card.ocr_text %></td>
+        <td>
+        <ol><%= link_to 'Show', business_card %></ol>
+        <ol><%= link_to 'Edit', edit_business_card_path(business_card) %></ol>
+        <ol><%= link_to 'Destroy', business_card, method: :delete, data: { confirm: 'Are you sure?' } %></ol>
+         </td>   
             <% end %>
+      </tr>
 
   </tbody>
 </table>
