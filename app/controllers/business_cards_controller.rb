@@ -14,13 +14,13 @@ class BusinessCardsController < ApplicationController
   # GET /business_cards/1
   # GET /business_cards/1.json
   def show
- 
+
   end
 
   # GET /business_cards/new
   def new
     @business_card = BusinessCard.new
-
+    
   end
 
   # GET /business_cards/1/edit
@@ -35,17 +35,15 @@ class BusinessCardsController < ApplicationController
     # #BEGIN ocr text extrtaction
 
     file = params[:business_card][:image].tempfile.path
-    e = Tesseract::Engine.new { |e| e.language = :eng }
+    e = Tesseract::Engine.new { |e| e.language = :eng 
+      e.blacklist = '|' 
+      e.blacklist = '='
+    }
     raw_text = e.text_for(file)
 
     # byebug
     @business_card.ocr_text = raw_text
-    # @business_card.image = file
-    
-      # raw_text = e.text_for(@business_card.image).strip
-      
-
-
+  
     # #END
 
     respond_to do |format|

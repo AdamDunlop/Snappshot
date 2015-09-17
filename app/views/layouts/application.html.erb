@@ -1,59 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Snappshot</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+<title>Snappshot</title>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/calendar.css">
+
 </head>
 <body> 
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Snappshot</a>
-    </div>
-    <div>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
-        <li class="active"><a href="/business_cards">Input Business Card</a></li>
-        <li class="active"><%= link_to 'New User', new_user_path %></li>
 
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-
-    <div class="menu-container">
- 
-        <div id="menu-toggle-primary">
-            <a class="close-menu-primary" href="#"><span>Close this menu</span></a>
+<div class="navbar-wrapper">
+            <div class="container-fluid">
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Snappshot</a>
+                            
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="/" class="">Home</a></li>
+                                
+                                    <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Business Cards <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/business_cards/new">Add New Business Card</a></li>
+                                            <li><a href="/business_cards">View Business Cards</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/create_users/new">Signup</a></li>
+                                            <li><a href="#">Login</a></li>
+                                        </ul>
+                                    </li>
+                            </ul>
+                            <ul class="nav navbar-nav pull-right">
+                                <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed in as  <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Change Password</a></li>
+                                            <li><a href="#">My Profile</a></li>
+                                        </ul>
+                                </li>
+                                <li class=""><a href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
         </div>
- 
-        <div class="wrap">
-            <ul class="menu-items" id="menu-primary-items">
-                <li class="menu-item"><%= link_to "Home", root_path %></li>
-                <li class="menu-item"><%= link_to "About Us", root_path %></li>
-                <li class="menu-item"><%= link_to "Contacts", root_path %>
 
-                    <ul class="sub-menu">
-                        <li class="menu-item"><%= link_to "Calendar", root_path %></li>
-                        <li class="menu-item"><%= link_to "Business Card", root_path %></li>
-                    </ul>
-                </li>
-                <li class="menu-item"><%= link_to "Login", root_path %></li>
-            </ul>
-        </div><!-- .wrap -->
-    </div><!-- .menu-container -->
-</nav>
 
 <%= yield %>
 
 </body>
+    
+
+ <footer>
+ <nav class="navbar navbar-default">
+
+    <div class="wrap">
+      <div class="navbar-footer">
+      <ul class="nav navbar-nav">
+        <li class="active"><%= link_to "About Us", root_path %></li>
+        <li class="active"><%= link_to "Contacts", root_path %></li>
+        <li class="active"><%= link_to "FAQs", root_path %></li>
+      </ul>
+      <div>
+    </div>
 </html>

@@ -15,7 +15,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'angularjs-rails', '~> 1.4.4'
-gem 'therubyracer', platforms: :ruby
+
+# gem 'theruybracer', platforms: :ruby
+
 gem 'tesseract-ocr', '~> 0.1.8' 
 
 gem 'rtesseract', '~> 1.3.0'
@@ -27,6 +29,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+gem 'simple_form'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -40,8 +44,19 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Carrierwave to upload images to app
 # mini-magick => image editor
 # bootsy => image editor via bootstrap3
+gem "paperclip", "~> 4.3"
+
 gem 'carrierwave'
+
+# gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+
+
+gem 'carrierwave-imageoptimizer'
+
 gem 'mini_magick', '~> 4.3.3'
+
+gem 'cloudinary'
+
 gem 'bootsy', '~> 2.1.0'
 
 # ???????????

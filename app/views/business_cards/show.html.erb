@@ -1,48 +1,28 @@
 <p id="notice"><%= notice %></p>
 
+<div class="container">
   <strong><%= @business_card.name %></strong>
-  <p>
-  <%= image_tag(@business_card.image) %>
+  <p contenteditable="true">
+    <%= image_tag(@business_card.image.url) %>
   </p>
-
-<div contenteditable="true">
-<p>
   <strong>Click to edit: </strong>
-  <%= @business_card.ocr_text %>
-</p>
+  <p contenteditable="true">
+    <%= @business_card.ocr_text %>
+  </p>
+  <strong>Company:</strong>
+  <p contenteditable="true">
+    <%= @business_card.company %>
+  </p>
+  <strong>Job Title:</strong>
+  <p contenteditable="true">
+    <%= @business_card.job_title %>
+  </p>
+  <strong>Address:</strong>
+  <p contenteditable="true">
+    <%= @business_card.company_address %>
+  </p>
 </div>
 
-<!-- <p>
-  <strong>Name:</strong>
-</p>
-
-<p>
-  <strong>Company:</strong>
-  <%= @business_card.company %>
-</p>
-
-<p>
-  <strong>Job title:</strong>
-  <%= @business_card.job_title %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @business_card.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @business_card.email %>
-</p>
-
-<p>
-  <strong>Company address:</strong>
-  <%= @business_card.company_address %>
-</p>
- -->
-
-
-
 <%= link_to 'Edit', edit_business_card_path(@business_card) %> |
-<%= link_to 'Back', business_cards_path %>
+<%= link_to 'Back', business_cards_path %> |
+<%= link_to 'Destroy', @business_card, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: snappshot
+  api_key: '374222852163425'
+  api_secret: wCvBm_K24eHe62mWTwVlc50Yd7I
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: snappshot
+  api_key: '374222852163425'
+  api_secret: wCvBm_K24eHe62mWTwVlc50Yd7I
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: snappshot
+  api_key: '374222852163425'
+  api_secret: wCvBm_K24eHe62mWTwVlc50Yd7I
+  enhance_image_tag: true
+  static_image_support: false

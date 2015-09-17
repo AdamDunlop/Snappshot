@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
+  resources :create_users
+  get 'create_users/new'
+
   # mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   
-  root to: 'users#index'
+  root to: 'create_users#index'
   
-  resources :users do
-    resources :business_cards
-  end
+  resources :business_cards
   
-    resources :business_cards
-  
-  
+  resources :create_users, only: [:new, :create]
+  # resources :sessions, only: [:new, :create, :destroy]
+  # root to: 'business_cards#index'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

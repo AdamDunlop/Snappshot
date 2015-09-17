@@ -14,47 +14,11 @@
  *= require_self
  *= require bootsy
  */
-body { padding-top: 100px; }
+body { padding-top: 50px; }
 footer { margin-top: 100px; }
 table, td, th { vertical-align: middle; border: none; }
 th { border-bottom: 1px solid #DDD; }
 
 
-#menu-primary-items{
-    display: none;
-}
-#menu-toggle-primary a.close-menu-primary{
-    display: none;
-}
 
-#element:target{
-    /* do stuff */
-}
-
-#menu-primary:target #menu-primary-items{
-    display: block;
-}
-/* Hide Open Toggle Link */
-#menu-primary:target #menu-toggle-primary a.open-menu-primary{
-    display: none;
-}
-/* Show Close Toggle Link */
-#menu-primary:target #menu-toggle-primary a.close-menu-primary{
-    display: block;
-}
-
-#menu-primary {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  max-width: 600px;
-  background-color: #A4C8EC;
-  background-image: none;
-}
-#container {
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 600px;
-}
 

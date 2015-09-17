@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Create Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Emaile</th>
+      <th>Password</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @create_users.each do |create_user| %>
+      <tr>
+        <td><%= create_user.name %></td>
+        <td><%= create_user.emaile %></td>
+        <td><%= create_user.password %></td>
+        <td><%= link_to 'Show', create_user %></td>
+        <td><%= link_to 'Edit', edit_create_user_path(create_user) %></td>
+        <td><%= link_to 'Destroy', create_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Create user', new_create_user_path %>
