@@ -19,6 +19,23 @@ footer { margin-top: 100px; }
 table, td, th { vertical-align: middle; border: none; }
 th { border-bottom: 1px solid #DDD; }
 
+fieldset legend {
+  font-weight: 700;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.5em 2em;
+  background: #171a1e;
+  -webkit-border-image: -webkit-linear-gradient(270deg, rgba(255, 255, 255, 0) 50%, #2d333b 50%) 1 round;
+       -o-border-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, #2d333b 50%) 1 round;
+          border-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, #2d333b 50%) 1 round;
+  border-width: 1px;
+  border-style: solid;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
 
-
-
+* {
+  box-sizing: border-box;
+}

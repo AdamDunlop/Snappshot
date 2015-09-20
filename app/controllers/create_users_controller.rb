@@ -1,6 +1,6 @@
 class CreateUsersController < ApplicationController
   before_action :set_create_user, only: [:show, :edit, :update, :destroy]
-
+  # skip_before_action :authorize, only: [:new, :create, :index]
   # GET /create_users
   # GET /create_users.json
   def index
@@ -28,7 +28,8 @@ class CreateUsersController < ApplicationController
 
     respond_to do |format|
       if @create_user.save
-        format.html { redirect_to @create_user, notice: 'Create user was successfully created.' }
+        session[:create_user_id] = @create_user.id
+        format.html { redirect_to business_cards_path, notice: 'Create user was successfully created.' }
         format.json { render :show, status: :created, location: @create_user }
       else
         format.html { render :new }
@@ -69,6 +70,6 @@ class CreateUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def create_user_params
-      params.require(:create_user).permit(:name, :emaile, :password)
+      params.require(:create_user).permit(:name, :email, :password, :password_confirmation)
     end
 end

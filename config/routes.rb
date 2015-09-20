@@ -1,15 +1,20 @@
-Rails.application.routes.draw do
-  resources :create_users
+  Rails.application.routes.draw do
+  
+  root to: 'create_users#new'
   get 'create_users/new'
+
+  get "admin" => "admin#index"
+  resource :sessions, only: [:new, :create, :destroy]
+
 
   # mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   
-  root to: 'create_users#index'
   
-  resources :business_cards
+  resources :business_cards 
+  #   resource :create_users
+  # end
   
   resources :create_users, only: [:new, :create]
-  # resources :sessions, only: [:new, :create, :destroy]
   # root to: 'business_cards#index'
 
 

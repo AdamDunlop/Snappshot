@@ -1,4 +1,6 @@
+
 <p id="notice"><%= notice %></p>
+<div class="container">
 
 <p>
   <strong>Name:</strong>
@@ -6,8 +8,8 @@
 </p>
 
 <p>
-  <strong>Emaile:</strong>
-  <%= @create_user.emaile %>
+  <strong>Email :</strong>
+  <%= @create_user.email %>
 </p>
 
 <p>
@@ -17,3 +19,4 @@
 
 <%= link_to 'Edit', edit_create_user_path(@create_user) %> |
 <%= link_to 'Back', create_users_path %>
+</div>

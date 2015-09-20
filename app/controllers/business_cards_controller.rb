@@ -8,23 +8,31 @@ class BusinessCardsController < ApplicationController
   # GET /business_cards
   # GET /business_cards.json
   def index
-    @business_cards = BusinessCard.all
+    if current_user 
+    @business_cards = current_user.business_cards
+    else
+    redirect_to new_sessions_path
+    end
   end
 
   # GET /business_cards/1
   # GET /business_cards/1.json
   def show
-
+    # @business_card
   end
 
   # GET /business_cards/new
   def new
+    if current_user 
     @business_card = BusinessCard.new
-    
+    else
+    redirect_to new_sessions_path
+    end
   end
 
   # GET /business_cards/1/edit
   def edit
+
   end
 
   # POST /business_cards
@@ -46,9 +54,11 @@ class BusinessCardsController < ApplicationController
   
     # #END
 
+    @business_card.create_user_id = current_user.id
     respond_to do |format|
       if @business_card.save
-        format.html { redirect_to @business_card, notice: 'Business card was successfully created.' }
+        # byebug
+        format.html { redirect_to business_card_path(id: @business_card.id),  notice: 'Business card was successfully created.' }
         format.json { render :show, status: :created, location: @business_card }
       else
         format.html { render :new }
@@ -62,7 +72,7 @@ class BusinessCardsController < ApplicationController
   def update
     respond_to do |format|
       if @business_card.update(business_card_params)
-        format.html { redirect_to @business_card, notice: 'Business card was successfully updated.' }
+        format.html { redirect_to business_cards_path, notice: 'Business card was successfully updated.' }
         format.json { render :show, status: :ok, location: @business_card }
       else
         format.html { render :edit }
@@ -80,6 +90,7 @@ class BusinessCardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -89,6 +100,8 @@ class BusinessCardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_card_params
-      params.require(:business_card).permit(:name, :company, :job_title, :phone, :email, :company_address, :image, :ocr_text)
+      params.require(:business_card).permit(:name, :company, :job_title, :phone, :email, :company_address, :image, :ocr_text, :create_user_id)
     end
+
+
 end
