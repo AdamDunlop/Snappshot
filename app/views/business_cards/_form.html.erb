@@ -19,15 +19,51 @@
     <div class="form-group has-success has-feedback">
        <label class="control-label" for="inputSuccess2"><%= f.label :image %></label><br>
       <%= f.file_field :image %>
-
     </div>
-
-    
 
     <div class="actions">
       <%= f.submit %>
     </div>
+
+
+
     <% end %>
   <% else %>
   <% link_to sessions_path %>
 <% end %>
+
+<button id="save">Save Image</button>
+
+<canvas id="c"></canvas>
+<img src="/uploads/business_card/image/12/unnamed.jpg" id="my-image">
+<script type="text/javascript">
+
+  function saveUrl() {
+
+  var dataURL =  canvas.toDataURL('image/png');
+/*  window.location = dataURL;
+*/  console.log("saveUrl");
+    console.log(dataURL);
+
+  }
+  var button = document.getElementById("save")
+  button.addEventListener("click", saveUrl);
+
+
+  var canvas = new fabric.Canvas('c');
+  console.log(canvas)
+var imgElement = document.getElementById('my-image');
+console.log(imgElement)
+var imgInstance = new fabric.Image(imgElement, {
+  left: 100,
+  top: 100,
+  angle: 60,
+  opacity: 0.85
+});
+console.log(imgInstance)
+canvas.add(imgInstance);
+</script>
+
+
+
+</div>
