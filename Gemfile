@@ -48,19 +48,11 @@ gem "paperclip", "~> 4.3"
 
 gem 'carrierwave'
 
-# gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-
-
-gem 'carrierwave-imageoptimizer'
+gem 'carrierwave-base64'
 
 gem 'mini_magick', '~> 4.3.3'
 
-gem 'cloudinary'
-
 gem 'bootsy', '~> 2.1.0'
-
-# ???????????
-gem 'remotipart', '~> 1.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

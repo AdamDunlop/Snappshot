@@ -1,5 +1,6 @@
 require 'tesseract'
- 
+require 'base64'
+
 
 class BusinessCardsController < ApplicationController
 
@@ -90,6 +91,15 @@ class BusinessCardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def upload
+    data = params[:data_uri]
+    image_data = Base64.decode64(data)
+    File.open("#{Rails.root}/public/uploads/business_card/test.png", 'wb') do |f|
+    f.write image_data  
+    end 
+    render nothing: true, status: :ok
+ end
   
 
   private

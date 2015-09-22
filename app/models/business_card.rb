@@ -7,12 +7,12 @@ class BusinessCard < ActiveRecord::Base
 
 end
 
-def rotate
-    photo   = BusinessCard.find(params[:image])
-    degrees = params[:direction] == â€˜leftâ€™ ? -90 : 90
-    #main photo
-    image   = Magick::ImageList.new(photo.file)
-    image   = image.rotate(degrees)
-    image.write(photo.file)
-end
+# def rotate
+#     photo   = BusinessCard.find(params[:image])
+#     degrees = params[:direction] == â€˜leftâ€™ ? -90 : 90
+#     #main photo
+#     image   = Magick::ImageList.new(photo.file)
+#     image   = image.rotate(degrees)
+#     image.write(photo.file)
+# end
 

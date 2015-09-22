@@ -1,6 +1,8 @@
-<div class="container">
+<section style="margin: 50px;">
 
-  <h2> Login </h2>
+<fieldset style="border-radius: 5px; padding: 5px; min-height:100px; width:500px;">
+    <legend>Login</legend>
+        <legend>
   <%= form_tag sessions_path do %> 
   <div>
     <%=label_tag "email" %><br>
@@ -10,8 +12,9 @@
     <%=label_tag "password" %><br>
     <%=password_field_tag "password" %><br>
   </div>
+  <br>
     <%=submit_tag "Login" %>
 
   <% end %>
-
-</div>
+    </legend>
+    </fieldset>

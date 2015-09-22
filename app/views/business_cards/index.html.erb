@@ -3,7 +3,7 @@
 
 
 
-  <h2>Business Cards</h2>
+  <h3>Business Cards</h3>
 <table class="table table-striped">
   <div class="container">
   <thead>
@@ -23,7 +23,11 @@
   <% if @business_cards.length > 0 %> 
 <% @business_cards.each do |business_card| %>
       <tr>
+        <div id="businesscards">
+          <div class="businesscardimage">
         <td><%= image_tag(business_card.image.url) %></td>
+          </div>
+        </div>
         <td><%= business_card.name %></td>
         <td><%= business_card.company %></td>
         <td><%= business_card.job_title %></td>
@@ -31,7 +35,6 @@
         <td><%= business_card.email %></td>
         <td><%= business_card.company_address %></td> 
         <td>
-        <ol><%= link_to 'Show', business_card %></ol>
         <ol><%= link_to 'Edit', edit_business_card_path(business_card) %></ol>
         <ol><%= link_to 'Destroy', business_card, method: :delete, data: { confirm: 'Are you sure?' } %></ol>
          </td>   

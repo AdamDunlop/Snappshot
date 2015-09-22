@@ -1,6 +1,11 @@
-  <!-- require 'mini_magick' -->
+      <!-- require 'mini_magick' -->
 <div class="container">
-  <% if current_user %>
+<section style="margin: 10px;">
+
+<fieldset style="border-radius: 5px; padding: 5px; min-height:150px;">
+
+  <% if current_user %> 
+
 
     <%= simple_form_for (@business_card) do |f| %>
       <% if @business_card.errors.any? %>
@@ -16,54 +21,65 @@
       <% end %> 
 
 
-    <div class="form-group has-success has-feedback">
-       <label class="control-label" for="inputSuccess2"><%= f.label :image %></label><br>
-      <%= f.file_field :image %>
-    </div>
+      <%= f.label :image %>
 
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-
+          <br>
+          <br>
+          <%= f.file_field :image %></span>
+    <br>
+      <% if @business_card.present? %>
+          <span class="glyphicon glyphicon-camera"><%= f.submit %></span> 
+      <% else %>
+      <% @flash[:notice] %>
+      <% end %>
 
 
     <% end %>
   <% else %>
   <% link_to sessions_path %>
 <% end %>
-
+<br>
+ 
 <button id="save">Save Image</button>
 
 <canvas id="c"></canvas>
-<img src="/uploads/business_card/image/12/unnamed.jpg" id="my-image">
+<img src="/uploads/business_card/image/30/chrisyammine.jpg" id="my-image">
+
 <script type="text/javascript">
 
   function saveUrl() {
 
-  var dataURL =  canvas.toDataURL('image/png');
-/*  window.location = dataURL;
-*/  console.log("saveUrl");
+    var dataURL =  canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, "");
+/*  window.location = dataURL;*/  
+    console.log("saveUrl"); 
     console.log(dataURL);
-
+    var formData = new FormData();
+    formData.append('data_uri', dataURL);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/business_cards/upload', true);
+    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+    xhr.onload = function(){ if (xhr.status !== 200) {alert('Request Failed.')}};
+    xhr.send('data_uri='+ dataURL);
   }
+
+
+
   var button = document.getElementById("save")
   button.addEventListener("click", saveUrl);
 
 
   var canvas = new fabric.Canvas('c');
-  console.log(canvas)
-var imgElement = document.getElementById('my-image');
-console.log(imgElement)
-var imgInstance = new fabric.Image(imgElement, {
-  left: 100,
-  top: 100,
-  angle: 60,
-  opacity: 0.85
-});
-console.log(imgInstance)
-canvas.add(imgInstance);
+  var imgElement = document.getElementById('my-image');
+  var imgInstance = new fabric.Image(imgElement, {
+    left: 100,
+    top: 20,
+    angle: 0,
+    opacity: 1
+  });
+  console.log(imgInstance)
+  canvas.add(imgInstance);
 </script>
 
-
+</fieldset> 
 
 </div>

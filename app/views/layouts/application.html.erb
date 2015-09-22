@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Snappshot</title>
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <%= csrf_meta_tags %>
+
+<link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
+
+
+<link rel="stylesheet" href="/stylesheets/application.css">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/javascript/application.js"></script>
+
+
+
+<title>Snappshot</title>
 </head>
 <body> 
 
@@ -26,16 +35,18 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">Snappshot</a>
+                            </div>
+                             <a class="navbar-brand">Snappshot</a>
                             
-                        </div>
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="/" class="">Home</a></li>
+                                
+
                                 
                                     <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Business Cards <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu">
                                             <li><a href="/business_cards/new">Add New Business Card</a></li>
                                             <li><a href="/business_cards">View Business Cards</a></li>
                                         </ul>
@@ -46,15 +57,23 @@
                                             <li><a href="/sessions/new">Login</a></li>
                                         </ul>
                                     </li>
+                                    <li class=""><%= link_to("Home", root_path) %></li>
                             </ul>
+                            <button type="button" class="btn btn-primary btn-sm button-home" data-toggle="modal" data-target="#myModal">Sign up</button>
+
+                            <button type="button" class="btn btn-primary btn-sm button-home" data-toggle="modal" data-target="#myModal2">Sign in</button>
+
+
                             <ul class="nav navbar-nav pull-right">
                                 <li class=" dropdown"><a href="" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Signed in as <% if current_user %> 
-                                <%= current_user.name  %> 
+                                <%= current_user.name.capitalize  %> 
                                 <% end %>
                                 <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">My Profile</a></li>
+                                          <% if current_user %> 
+                                            <li><a href="/profile">My Profile</a></li>
                                             <li><a href="#">Change Password</a></li>
+                                            <% end %>
                                         </ul>
                                 </li>
                                 <li class=""><%= link_to("Logout", sessions_path("current"), method: :delete) %></li>
@@ -64,22 +83,109 @@
                 </nav>
             </div>
         </div>
+<% if flash[:message] %>
+  <div class="login-error">
+  <%= flash[:message] %>
+  </div>
+<% end %>
+
 
 <%= yield %>
 
+     <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Sign up</h4>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="/create_users/new">
+            
+                <div class="form-group">
+                  <label for="exampleInputEmail1">User Name</label>
+                  <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="User Name">
+                </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+                
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password Confirmation</label>
+                  <input type="confirmation" name="confirmation" class="form-control" id="examplePasswordConfirmation" placeholder="Password Confirmation">
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> agree to the Terms and Conditions
+                  </label>
+                </div>
+                 <input type="submit" class="btn btn-primary">
+              </form>
+
+            </div>
+      
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 style="text-align:left" class="modal-title" id="myModalLabel">Login</h4>
+              </div>
+
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+    <div class="modal-body">
+              <form method="post" action="/login">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                   <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                 <input type="submit" class="btn btn-primary"></p>
+               </div>
+             </div>
+            </form>
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
     
+<hr>
+<div class="container footer">
+     <div class="navbar-footer">
+        <div class="row">
+          <ul class="nav navbar-nav">
+        
+            <li class="active"><div class="col-md-5"><%= link_to "About Us", root_path %></div></li>
+            <li class="active"><div class="col-md-5">FAQ<br>Privacy Policy<br>Security</div></li>
+            <li class="active"><div class="col-md-5"><%= link_to "Contacts", root_path %></div></li>
+       
+          </ul>
+        </div>
+    <div>
+</div>
 
- <footer>
- <nav class="navbar navbar-default">
-
-    <div class="wrap">
-      <div class="navbar-footer">
-      <ul class="nav navbar-nav">
-        <li class="active"><%= link_to "About Us", root_path %></li>
-        <li class="active"><%= link_to "Contacts", root_path %></li>
-        <li class="active"><%= link_to "FAQs", root_path %></li>
-      </ul>
-      <div>
-    </div>
 </html>

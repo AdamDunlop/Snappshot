@@ -1,6 +1,10 @@
   Rails.application.routes.draw do
   
-  root to: 'create_users#new'
+  get 'welcome/index'
+
+  post 'business_cards/upload', to: 'business_cards#upload'
+
+  root to: 'welcome#index'
   get 'create_users/new'
 
   get "admin" => "admin#index"
@@ -8,6 +12,9 @@
 
 
   # mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+  get 'profile', to: 'create_users#show'
+  resource :sessions
+
   
   
   resources :business_cards 
