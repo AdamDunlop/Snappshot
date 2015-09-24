@@ -94,9 +94,9 @@ class BusinessCardsController < ApplicationController
 
   def upload
     data = params[:data_uri]
-    image_data = Base64.decode64(data)
+    image_data = Base64.strict_decode64(data.gsub(' ', '+'))
     File.open("#{Rails.root}/public/uploads/business_card/test.png", 'wb') do |f|
-    f.write image_data  
+      f.write image_data  
     end 
     render nothing: true, status: :ok
  end

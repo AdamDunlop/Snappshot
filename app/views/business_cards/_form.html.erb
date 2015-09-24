@@ -1,4 +1,4 @@
-      <!-- require 'mini_magick' -->
+        <!-- require 'mini_magick' -->
 <div class="container">
 <section style="margin: 10px;">
 
@@ -22,6 +22,8 @@
 
 
       <%= f.label :image %>
+
+      <input type="hidden" name="canvascontent" id="canvascontent" />
 
           <br>
           <br>
@@ -49,10 +51,7 @@
 
   function saveUrl() {
 
-    var dataURL =  canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, "");
-/*  window.location = dataURL;*/  
-    console.log("saveUrl"); 
-    console.log(dataURL);
+    var dataURL =  canvas.toDataURL('image/png', 1.0).replace(/^data:image\/(png|jpg);base64,/, "");
     var formData = new FormData();
     formData.append('data_uri', dataURL);
     var xhr = new XMLHttpRequest();
@@ -60,6 +59,7 @@
     xhr.setRequestHeader('Content-Type', 'multipart/form-data');
     xhr.onload = function(){ if (xhr.status !== 200) {alert('Request Failed.')}};
     xhr.send('data_uri='+ dataURL);
+    console.log(dataURL)
   }
 
 
@@ -78,6 +78,10 @@
   });
   console.log(imgInstance)
   canvas.add(imgInstance);
+
+var url = canvas.toDataURL('image/png');
+$("#canvascontent").val(url);
+
 </script>
 
 </fieldset> 
