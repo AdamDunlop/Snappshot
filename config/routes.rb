@@ -5,8 +5,9 @@
   post 'business_cards/upload', to: 'business_cards#upload'
 
   root to: 'welcome#index'
+  
   get 'create_users/new'
-
+  
   get "admin" => "admin#index"
   resource :sessions, only: [:new, :create, :destroy]
 

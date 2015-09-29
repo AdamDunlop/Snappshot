@@ -7,7 +7,7 @@
   <% if current_user %> 
 
 
-    <%= simple_form_for (@business_card) do |f| %>
+    <%= form_for @business_card, :html => {id: "imageform"}  do |f| %>
       <% if @business_card.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@business_card.errors.count, "error") %> prohibited this business_card from being saved:</h2>
@@ -22,32 +22,88 @@
 
 
       <%= f.label :image %>
+      <%= f.file_field :image, :html => {id: "business_card_image"} %>
 
-      <input type="hidden" name="canvascontent" id="canvascontent" />
+      <!-- <input type="hidden" name="canvascontent" id="canvascontent" /> -->
 
           <br>
           <br>
-          <%= f.file_field :image %></span>
-    <br>
-      <% if @business_card.present? %>
-          <span class="glyphicon glyphicon-camera"><%= f.submit %></span> 
-      <% else %>
-      <% @flash[:notice] %>
+          <br>
+      <span class="glyphicon glyphicon-camera"><input type="submit" id="imageSubmit" name="commit" value="Add Business card"></span> 
+      
+<!-- create_user.id/ businesscard.id-->
+
       <% end %>
-
-
-    <% end %>
-  <% else %>
-  <% link_to sessions_path %>
-<% end %>
+    <% else %>
+    <% link_to sessions_path %>
+  <% end %>
 <br>
- 
+
 <button id="save">Save Image</button>
 
-<canvas id="c"></canvas>
-<img src="/uploads/business_card/image/30/chrisyammine.jpg" id="my-image">
 
+<div id="preview"></div>
+<canvas id="c"></canvas>
+
+ <script type="text/javascript">
+  var imageInput = document.getElementById("business_card_image")
+  var imageform = document.getElementById("imageform")
+  var preview = document.getElementById("preview")
+  function uploadImage(e) {
+  console.log(e)
+      for (var i = 0; i < imageInput.files.length; i++) {
+  var file = imageInput.files[i];
+  var imageType = /^image\//;
+  
+  if (!imageType.test(file.type)) {
+    continue;
+  }
+  
+  var img = document.createElement("img");
+  img.classList.add("obj");
+  img.file = file;
+  img.id = "imgPreview"
+  preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+  
+  var reader = new FileReader();
+  reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+  reader.readAsDataURL(file);
+
+  var button = document.getElementById("save")
+  button.addEventListener("click", saveUrl);
+
+
+  var canvas = new fabric.Canvas('c');
+  var imgElement = document.getElementById('imgPreview');
+  console.log(imgElement)
+  var imgInstance = new fabric.Image(imgElement, {
+    left: 100,
+    top: 20,
+    angle: 0,
+    opacity: 1
+  });
+  canvas.add("obj");
+
+  // var url = canvas.toDataURL('image/png');
+  // $("#c").val(url);
+    fabric.Image
+  }
+
+
+  // imageform.submit();
+ }
+
+  imageInput.addEventListener("change", uploadImage);
+
+  function previewImage() {
+  console.log("submit")
+  return true
+  } 
+
+ </script>  
+ 
 <script type="text/javascript">
+
 
   function saveUrl() {
 
@@ -64,26 +120,12 @@
 
 
 
-  var button = document.getElementById("save")
-  button.addEventListener("click", saveUrl);
 
-
-  var canvas = new fabric.Canvas('c');
-  var imgElement = document.getElementById('my-image');
-  var imgInstance = new fabric.Image(imgElement, {
-    left: 100,
-    top: 20,
-    angle: 0,
-    opacity: 1
-  });
-  console.log(imgInstance)
-  canvas.add(imgInstance);
-
-var url = canvas.toDataURL('image/png');
-$("#canvascontent").val(url);
 
 </script>
+
 
 </fieldset> 
 
 </div>
+

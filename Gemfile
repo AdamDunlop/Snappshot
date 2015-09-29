@@ -18,6 +18,8 @@ gem 'angularjs-rails', '~> 1.4.4'
 
 # gem 'theruybracer', platforms: :ruby
 
+
+
 gem 'tesseract-ocr', '~> 0.1.8' 
 
 gem 'rtesseract', '~> 1.3.0'
@@ -53,6 +55,8 @@ gem 'carrierwave-base64'
 gem 'mini_magick', '~> 4.3.3'
 
 gem 'bootsy', '~> 2.1.0'
+
+gem 'jquery-fileupload-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

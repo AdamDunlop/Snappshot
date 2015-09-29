@@ -3,6 +3,7 @@ require 'base64'
 
 
 class BusinessCardsController < ApplicationController
+  #   include CarrierwaveBase64Uploader
 
   before_action :set_business_card, only: [:show, :edit, :update, :destroy]
 
@@ -26,6 +27,7 @@ class BusinessCardsController < ApplicationController
   def new
     if current_user 
     @business_card = BusinessCard.new
+    
     else
     redirect_to new_sessions_path
     end
@@ -42,7 +44,7 @@ class BusinessCardsController < ApplicationController
 
     @business_card = BusinessCard.new(business_card_params)
     # #BEGIN ocr text extrtaction
-
+    # byebug  
     file = params[:business_card][:image].tempfile.path
     e = Tesseract::Engine.new { |e| e.language = :eng 
       e.blacklist = '|' 
