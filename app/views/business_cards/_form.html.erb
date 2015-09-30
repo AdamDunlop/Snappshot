@@ -39,54 +39,65 @@
   <% end %>
 <br>
 
-<button id="save">Save Image</button>
-
-
 <div id="preview"></div>
-<canvas id="c"></canvas>
+
+<button id="button">Rotate</button>
+<!-- <canvas id="c"></canvas> -->
 
  <script type="text/javascript">
   var imageInput = document.getElementById("business_card_image")
   var imageform = document.getElementById("imageform")
   var preview = document.getElementById("preview")
   function uploadImage(e) {
-  console.log(e)
-      for (var i = 0; i < imageInput.files.length; i++) {
-  var file = imageInput.files[i];
-  var imageType = /^image\//;
+    console.log(e)
+        for (var i = 0; i < imageInput.files.length; i++) {
+    var file = imageInput.files[i];
+    var imageType = /^image\//;
   
-  if (!imageType.test(file.type)) {
-    continue;
-  }
-  
-  var img = document.createElement("img");
-  img.classList.add("obj");
-  img.file = file;
-  img.id = "imgPreview"
-  preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
-  
-  var reader = new FileReader();
-  reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-  reader.readAsDataURL(file);
+    if (!imageType.test(file.type)) {
+      continue;
+    }
+    
+    var img = document.createElement("img");
+    img.classList.add("obj");
+    img.file = file;
+    img.id = "imgPreview"
+    img.className = "rotate"+angle;
+    img.src = preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+        
 
-  var button = document.getElementById("save")
-  button.addEventListener("click", saveUrl);
+    var reader = new FileReader();
+    reader.onload = (function(aImg) { 
+      return function(e) { 
+      aImg.src = e.target.result; }; 
+    })
 
+    (img);
+    reader.readAsDataURL(file);
 
-  var canvas = new fabric.Canvas('c');
-  var imgElement = document.getElementById('imgPreview');
-  console.log(imgElement)
-  var imgInstance = new fabric.Image(imgElement, {
-    left: 100,
-    top: 20,
-    angle: 0,
-    opacity: 1
-  });
-  canvas.add("obj");
+    var angle = 0, img = document.getElementById('imgPreview');
+    document.getElementById('button').onclick = function() {
+    angle = (angle+90)%360;
+}
+    
+    // var canvas = new fabric.Canvas('c');
+    // var imgElement = document.getElementById('imgPreview');
+    // console.log(imgElement)
+    // var imgInstance = new fabric.Image(imgElement, {
+    //   left: 100,
+    //   top: 20,
+    //   angle: 0,
+    //   opacity: 1
+    // });
+
+    // var button = document.getElementById("save")
+    // button.addEventListener("click", saveUrl);
+
+  // canvas.add("obj");
 
   // var url = canvas.toDataURL('image/png');
   // $("#c").val(url);
-    fabric.Image
+    // fabric.Image
   }
 
 
@@ -100,30 +111,31 @@
   return true
   } 
 
- </script>  
- 
-<script type="text/javascript">
+ </script> 
+
+  <script type="text/javascript">
 
 
-  function saveUrl() {
+    function saveUrl() {
 
-    var dataURL =  canvas.toDataURL('image/png', 1.0).replace(/^data:image\/(png|jpg);base64,/, "");
-    var formData = new FormData();
-    formData.append('data_uri', dataURL);
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/business_cards/upload', true);
-    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-    xhr.onload = function(){ if (xhr.status !== 200) {alert('Request Failed.')}};
-    xhr.send('data_uri='+ dataURL);
-    console.log(dataURL)
-  }
-
-
+      var dataURL =  canvas.toDataURL('image/png', 1.0).replace(/^data:image\/(png|jpg);base64,/, "");
+      var formData = new FormData();
+      formData.append('data_uri', dataURL);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/business_cards/upload', true);
+      xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+      xhr.onload = function(){ if (xhr.status !== 200) {alert('Request Failed.')}};
+      xhr.send('data_uri='+ dataURL);
+      console.log(dataURL)
+    }
 
 
 
-</script>
 
+
+  </script>
+
+<button id="save">Save Image</button>
 
 </fieldset> 
 
