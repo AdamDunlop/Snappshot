@@ -20,14 +20,14 @@ class BusinessCardsController < ApplicationController
   # GET /business_cards/1
   # GET /business_cards/1.json
   def show
-    # @business_card
   end
 
   # GET /business_cards/new
   def new
     if current_user 
-    @business_card = BusinessCard.new
-    
+      @business_card = BusinessCard.new
+      byebug
+      @business_card.create_user = current_user
     else
     redirect_to new_sessions_path
     end
@@ -60,7 +60,6 @@ class BusinessCardsController < ApplicationController
     @business_card.create_user_id = current_user.id
     respond_to do |format|
       if @business_card.save
-        # byebug
         format.html { redirect_to business_card_path(id: @business_card.id),  notice: 'Business card was successfully created.' }
         format.json { render :show, status: :created, location: @business_card }
       else
