@@ -26,7 +26,6 @@ class BusinessCardsController < ApplicationController
   def new
     if current_user 
       @business_card = BusinessCard.new
-      byebug
       @business_card.create_user = current_user
     else
     redirect_to new_sessions_path
