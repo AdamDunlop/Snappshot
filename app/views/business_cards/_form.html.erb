@@ -2,7 +2,7 @@
 <div class="container">
 <section style="margin: 10px;">
 
-<fieldset style="border-radius: 5px; padding: 5px; min-height:150px;">
+<fieldset style="border-radius: 5px; padding: 50px; min-height:150px;">
 
   <% if current_user %> 
 
@@ -19,10 +19,10 @@
           </ul>
         </div>
       <% end %> 
-
+      <% if :image.length > 0 %> 
       <%= f.label :image %>
       <%= f.file_field :image, :html => {id: "business_card_image"} %>
-
+      <% end %> 
           <br>
           <br>
           <br>
@@ -39,7 +39,7 @@
 <button id="save">Save Image</button><br>
 
  <script type="text/javascript">
- console.log("ID IS:::::::: <%= @business_card.id %>");
+ console.log("ID IS::::::::" + "<%= @business_card.id %>");
   var imageInput = document.getElementById("business_card_image");
   var imageform = document.getElementById("imageform");
   var dataURL = '';
@@ -56,7 +56,7 @@
       // context.drawImage(img, 0, 0, img.width, img.height);
       console.log('LOADING IMAGE  !!!!')
     var imgInstance = new fabric.Image(img, {
-      left: 100,
+      left: 50,
       top: 20,
       angle: 0,
       opacity: 1
@@ -123,6 +123,7 @@
     console.log(dataURL)
 
   }
+
   </script>
 
 
