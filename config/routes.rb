@@ -4,6 +4,8 @@
 
   post 'business_cards/upload', to: 'business_cards#upload'
 
+  post 'business_cards/:id/save_edited_image', to: 'business_cards#save_edited_image'
+
   root to: 'welcome#index'
   
   get 'create_users/new'

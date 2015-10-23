@@ -7,7 +7,7 @@
   <% if current_user %> 
 
 
-    <%= form_for @business_card, :html => {id: "imageform"}  do |f| %>
+    <%= form_for @business_card,remote: true, :html => {id: "imageform"}  do |f| %>
       <% if @business_card.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@business_card.errors.count, "error") %> prohibited this business_card from being saved:</h2>
@@ -19,26 +19,31 @@
           </ul>
         </div>
       <% end %> 
-      <% if :image.length > 0 %> 
       <%= f.label :image %>
       <%= f.file_field :image, :html => {id: "business_card_image"} %>
-      <% end %> 
+      <%= f.hidden_field :imageuri   %>
           <br>
           <br>
           <br>
+          <span>
+            <%= @business_card.id %>
+          </span>
       <span class="glyphicon glyphicon-camera"><input type="submit" id="imageSubmit" name="commit" value="Add Business Card"></span> 
 
       <% end %>
-    <% else %>
+  <% else %>
     <% link_to sessions_path %>
   <% end %>
 <br>
 
-<canvas id="c" width='600' height='450'></canvas><br>
-<button id="rotate">Rotate</button><br>
-<button id="save">Save Image</button><br>
+<canvas id="c" width='600' height='450'></canvas>
+<br>
+<!-- <button id="rotate">Rotate</button><br> -->
+<button id="save">Save Image URI</button><br>
 
  <script type="text/javascript">
+
+
  console.log("ID IS::::::::" + "<%= @business_card.id %>");
   var imageInput = document.getElementById("business_card_image");
   var imageform = document.getElementById("imageform");
@@ -68,9 +73,15 @@
     img.src = URL.createObjectURL(e.target.files[0]);
   })
 
-    var button = document.getElementById("save")
-    button.addEventListener("click", saveUrl);
+    // var button = document.getElementById("save")
+    // button.addEventListener("click", saveUrl);
 
+   $("#imageSubmit").on("click", function() {
+    console.log("click");
+      $("#business_card_imageuri").val(canvas.toDataURL('image/png', 1.0));  
+      // debugger
+   })
+ 
 
   // function uploadImage(e)
   // {
@@ -104,25 +115,18 @@
     // fabric.Image
   // }
 
+  // function saveUrl() {
+  //   dataURL =  canvas.toDataURL('image/png', 1.0).replace(/^data:image\/(png|jpg);base64,/, "");
+  //   var formData = new FormData();
+  //   formData.append('data_uri', dataURL, "edit.png");
+  //   var xhr = new XMLHttpRequest();
+  //   xhr.open('POST', "/business_cards/upload?id=" + <%= @business_card.id%> + "/save_edited_image", true);
+  //   xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+  //   xhr.onload = function(){ if (xhr.status !== 200) {alert('Request Failed.')}};
+  //   xhr.send('data_uri='+ dataURL);
+  //   // console.log(dataURL)
 
-  imageform.addEventListener("submit", function() {
-    img.src = dataURL; 
-  });
-
-
-  function saveUrl() {
-
-    dataURL =  canvas.toDataURL('image/png', 1.0).replace(/^data:image\/(png|jpg);base64,/, "");
-    var formData = new FormData();
-    formData.append('data_uri', dataURL, "edit.png");
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', "/business_cards/upload?id=<%= @business_card.id %>" , true);
-    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-    xhr.onload = function(){ if (xhr.status !== 200) {alert('Request Failed.')}};
-    xhr.send('data_uri='+ dataURL);
-    console.log(dataURL)
-
-  }
+  // }
 
   </script>
 

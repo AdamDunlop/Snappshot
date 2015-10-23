@@ -43,7 +43,6 @@ class BusinessCardsController < ApplicationController
 
     @business_card = BusinessCard.new(business_card_params)
     # #BEGIN ocr text extrtaction
-    # byebug  
     file = params[:business_card][:image].tempfile.path
     e = Tesseract::Engine.new { |e| e.language = :eng 
       e.blacklist = '|' 
@@ -59,6 +58,7 @@ class BusinessCardsController < ApplicationController
     @business_card.create_user_id = current_user.id
     respond_to do |format|
       if @business_card.save
+        # byebug  
         format.html { redirect_to business_card_path(id: @business_card.id),  notice: 'Business card was successfully created.' }
         format.json { render :show, status: :created, location: @business_card }
       else
@@ -99,8 +99,12 @@ class BusinessCardsController < ApplicationController
       f.write image_data  
     end 
     render nothing: true, status: :ok
- end
-  
+  end
+ 
+  def save_edited_image
+    byebug
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -110,7 +114,7 @@ class BusinessCardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_card_params
-      params.require(:business_card).permit(:name, :company, :job_title, :phone, :email, :company_address, :image, :ocr_text, :create_user_id)
+      params.require(:business_card).permit(:name, :company, :job_title, :phone, :email, :company_address, :image, :ocr_text, :create_user_id, :imageuri)
     end
 
 

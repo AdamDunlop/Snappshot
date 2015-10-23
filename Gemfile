@@ -18,8 +18,6 @@ gem 'angularjs-rails', '~> 1.4.4'
 
 # gem 'theruybracer', platforms: :ruby
 
-
-
 gem 'tesseract-ocr', '~> 0.1.8' 
 
 gem 'rtesseract', '~> 1.3.0'
