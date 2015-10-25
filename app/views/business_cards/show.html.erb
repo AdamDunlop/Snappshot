@@ -15,15 +15,8 @@
       <%= f.file_field :image %>
       <% end %>
   </div>
-  <div style="padding-left:50px">
+  <div class="form-group has-success has-feedback" style="padding-left:50px">
      <label class="control-label" for="inputSuccess2"><%= f.label :ocr_text %></label><br>
-     <div colspan="3">
-      <%= f.text_area :ocr_text, size: "30x10"  %>
-    </div>
-  </div> 
-
-    <div style="padding-left:50px">
-     <label class="control-label" for="inputSuccess2"><%= f.label :ocr_text_edited_image %></label><br>
      <div colspan="3">
       <%= f.text_area :ocr_text, size: "30x10"  %>
     </div>

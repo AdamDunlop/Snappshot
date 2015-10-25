@@ -1,4 +1,3 @@
-        <!-- require 'mini_magick' -->
 <div class="container">
 <section style="margin: 10px;">
 
@@ -22,115 +21,63 @@
       <%= f.label :image %>
       <%= f.file_field :image, :html => {id: "business_card_image"} %>
       <%= f.hidden_field :imageuri   %>
-          <br>
-          <br>
-          <br>
-          <span>
-            <%= @business_card.id %>
-          </span>
-      <span class="glyphicon glyphicon-camera"><input type="submit" id="imageSubmit" name="commit" value="Add Business Card"></span> 
+        <span>
+          <%= @business_card.id %>
+        </span>
 
+      <span class="glyphicon glyphicon-camera"><input type="submit" id="imageSubmit" name="commit" value="Add Business Card"></span> 
+      <br>
       <% end %>
   <% else %>
     <% link_to sessions_path %>
   <% end %>
+<canvas id="c" width='600' height='300'></canvas>
 <br>
-
-<canvas id="c" width='600' height='450'></canvas>
-<br>
-<!-- <button id="rotate">Rotate</button><br> -->
-<button id="save">Save Image URI</button><br>
 
  <script type="text/javascript">
 
-
- console.log("ID IS::::::::" + "<%= @business_card.id %>");
   var imageInput = document.getElementById("business_card_image");
   var imageform = document.getElementById("imageform");
   var dataURL = '';
-  // var preview = document.getElementById("preview");
-  var canvas = new fabric.Canvas('c');
-  var context = document.getElementById('c').getContext('2d');
+  var canvas = new fabric.Canvas('c', {
+    backgroundColor: "#fff"
+  });
+  var context = document.getElementById('c').getContext('2d'); 
   $('#business_card_image').on('change', function(e)
   {
     var img = new Image()
     img.onload = function(e)
     {
-       // c.width = img.width;
-       // c.height = img.height;
-      // context.drawImage(img, 0, 0, img.width, img.height);
-      console.log('LOADING IMAGE  !!!!')
-    var imgInstance = new fabric.Image(img, {
-      left: 50,
-      top: 20,
-      angle: 0,
-      opacity: 1
-    });
+      var imgInstance = new fabric.Image(img, {
+        left: 0,
+        top: 0,
+        angle: 0,
+        opacity: 1
+      });
       canvas.add(imgInstance);
     
+      $("#rotateLeft").on("click", function(e){
+        imgInstance.setAngle(90);
+        canvas.renderAll.bind(canvas);
+
+    })
+
     }
 
     img.src = URL.createObjectURL(e.target.files[0]);
   })
 
-    // var button = document.getElementById("save")
-    // button.addEventListener("click", saveUrl);
-
    $("#imageSubmit").on("click", function() {
     console.log("click");
       $("#business_card_imageuri").val(canvas.toDataURL('image/png', 1.0));  
-      // debugger
    })
- 
-
-  // function uploadImage(e)
-  // {
-  //   for (var i = 0; i < imageInput.files.length; i++) {
-  //     var file = imageInput.files[i];
-  //     var imageType = /^image\//;
-    
-  //     if (!imageType.test(file.type)) {
-  //       continue;
-  //   }
-    
-    // var img = document.createElement("img");
-    // img.classList.add("obj");
-    // img.file = file;
-    // img.id = "imgPreview"
-    // // img.className = "rotate"+angle;
-    // preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
-    //     var angle = 0, img = document.getElementById('imgPreview');
-    //     document.getElementById('button').onclick = function() {
-    //     angle = (angle+90)%360;
-    // }
-    
-    // var canvas = new fabric.Canvas('c');
-    // var imgElement = document.getElementById('imgPreview');
-    // console.log(imgElement)
-
-
-
-  // var url = canvas.toDataURL('image/png');
-  // $("#c").val(url);
-    // fabric.Image
-  // }
-
-  // function saveUrl() {
-  //   dataURL =  canvas.toDataURL('image/png', 1.0).replace(/^data:image\/(png|jpg);base64,/, "");
-  //   var formData = new FormData();
-  //   formData.append('data_uri', dataURL, "edit.png");
-  //   var xhr = new XMLHttpRequest();
-  //   xhr.open('POST', "/business_cards/upload?id=" + <%= @business_card.id%> + "/save_edited_image", true);
-  //   xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-  //   xhr.onload = function(){ if (xhr.status !== 200) {alert('Request Failed.')}};
-  //   xhr.send('data_uri='+ dataURL);
-  //   // console.log(dataURL)
-
-  // }
 
   </script>
 
-
+<button id="rotateLeft">Rotate 90(left)</button>
+<button>Rotate 90(right)</button>
+<button>Grey Scale</button>
+<input type="range", style="background: black;">Threshold</input>
 
 
 </fieldset> 

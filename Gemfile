@@ -44,11 +44,13 @@ gem 'simple_form'
 # Use Carrierwave to upload images to app
 # mini-magick => image editor
 # bootsy => image editor via bootstrap3
-gem "paperclip", "~> 4.3"
+# gem "paperclip", "~> 4.3"
 
 gem 'carrierwave'
 
 gem 'carrierwave-base64'
+
+gem 'rmagick'
 
 gem 'mini_magick', '~> 4.3.3'
 

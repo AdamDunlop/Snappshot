@@ -1,5 +1,7 @@
 require 'tesseract'
 require 'base64'
+require 'rmagick'
+
 
 
 class BusinessCardsController < ApplicationController
@@ -41,6 +43,7 @@ class BusinessCardsController < ApplicationController
   # POST /business_cards.json
   def create
 
+
     @business_card = BusinessCard.new(business_card_params)
     # #BEGIN ocr text extrtaction
     file = params[:business_card][:image].tempfile.path
@@ -48,7 +51,13 @@ class BusinessCardsController < ApplicationController
       e.blacklist = '|' 
       e.blacklist = '='
     }
-    raw_text = e.text_for(file)
+    
+    data = params[:business_card][:imageuri]
+    image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
+      
+    raw_text = e.text_for(image_data)
+
+
 
     # byebug
     @business_card.ocr_text = raw_text
