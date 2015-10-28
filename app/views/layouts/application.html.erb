@@ -15,6 +15,7 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="/javascript/application.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 
 
 
@@ -41,28 +42,25 @@
                             
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                
-
-                                
-                                    <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Business Cards <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                            <li><a href="/business_cards/new">Add New Business Card</a></li>
-                                            <li><a href="/business_cards">View Business Cards</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/create_users/new">Signup</a></li>
-                                            <li><a href="/sessions/new">Login</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class=""><%= link_to("Home", root_path) %></li>
+                                    
+                            <li class=""><%= link_to("Home", root_path) %>
+                            </li>
+                    
+                            <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Business Cards <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                    <li><a href="/business_cards/new">Add New Business Card</a></li>
+                                    <li><a href="/business_cards">View Business Contacts</a></li>
+                                </ul>
+                            </li>
+                            <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/create_users/new">Signup</a></li>
+                                    <li><a href="/sessions/new">Login</a></li>
+                                </ul>
                             </ul>
-                            <button type="button" class="btn btn-primary btn-sm button-home" data-toggle="modal" data-target="#myModal">Sign up</button>
+                          <!--<button type="button" class="btn btn-primary btn-sm button-home" data-toggle="modal" data-target="#myModal">Sign up</button>
 
-                            <button type="button" class="btn btn-primary btn-sm button-home" data-toggle="modal" data-target="#myModal2">Sign in</button>
-
-
+                            <button type="button" class="btn btn-primary btn-sm button-home" data-toggle="modal" data-target="#myModal2">Sign in</button> -->
                             <ul class="nav navbar-nav pull-right">
                                 <li class=" dropdown"><a href="" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Signed in as <% if current_user %> 
                                 <%= current_user.name.capitalize  %> 
@@ -92,83 +90,6 @@
 <%= yield %>
 
      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Sign up</h4>
-            </div>
-            <div class="modal-body">
-              <form method="post" action="/create_users/new">
-            
-                <div class="form-group">
-                  <label for="exampleInputEmail1">User Name</label>
-                  <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="User Name">
-                </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-              </div>
-                
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password Confirmation</label>
-                  <input type="confirmation" name="confirmation" class="form-control" id="examplePasswordConfirmation" placeholder="Password Confirmation">
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> agree to the Terms and Conditions
-                  </label>
-                </div>
-                 <input type="submit" class="btn btn-primary">
-              </form>
-
-            </div>
-      
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 style="text-align:left" class="modal-title" id="myModalLabel">Login</h4>
-              </div>
-
-<div class="tab-content">
-  <div id="home" class="tab-pane fade in active">
-    <div class="modal-body">
-              <form method="get" action="/sessions/new">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="text" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                   <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                 <input type="submit" class="btn btn-primary"></p>
-               </div>
-             </div>
-            </form>
-
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 </body>
     
@@ -178,9 +99,9 @@
         <div class="row">
           <ul class="nav navbar-nav">
         
-            <li class="active"><div class="col-md-5"><%= link_to "About Us", root_path %></div></li>
-            <li class="active"><div class="col-md-5">FAQ<br>Privacy Policy<br>Security</div></li>
-            <li class="active"><div class="col-md-5"><%= link_to "Contacts", root_path %></div></li>
+            <li class="active"><div class="col-md-1"><%= link_to "About Us", root_path %></div></li>
+            <li class="active"><div class="col-md-1">FAQ<br>Privacy Policy<br>Security</div></li>
+            <li class="active"><div class="col-md-1"><%= link_to "Contacts", root_path %></div></li>
        
           </ul>
         </div>

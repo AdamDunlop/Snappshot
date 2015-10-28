@@ -1,0 +1,8 @@
+   
+  <div style="padding-left:390px">
+   <% if current_user -%>Welcome, <%= current_user.name.capitalize %><% end -%>
+   <br>
+   <br>
+   <%= button_to 'Add a New Businesscard', new_business_card_path, :method => :get %>
+  </div>
+

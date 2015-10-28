@@ -5,61 +5,53 @@
 <% if current_user %>
 <div class="container">
 <%= simple_form_for (@business_card) do |f| %>
-  <div class="form-group has-success has-feedback", style="left-padding=20">
+    <div style="left-padding=20">
 
-     <label class="control-label" for="inputSuccess2"><%= f.label :image %></label><br>
+      <label class="control-label" for="inputSuccess2"><%= f.label :image %></label><br>
       <% if @business_card.image %>
-      <%= image_tag(@business_card.image.url) %>
-      <%= image_tag(@business_card.imageuri) %>
+        <%= image_tag(@business_card.imageuri) %>
       <% else %>
-      <%= f.file_field :image %>
+        <%= f.file_field :image %>
       <% end %>
-  </div>
-  <div class="form-group has-success has-feedback" style="padding-left:50px">
-     <label class="control-label" for="inputSuccess2"><%= f.label :ocr_text %></label><br>
-     <div colspan="3">
-      <%= f.text_area :ocr_text, size: "30x10"  %>
     </div>
-  </div> 
+    <label class="control-label" for="inputSuccess2"><%= f.label :ocr_text %></label><br>
+    <div colspan="3">
+    <%= f.text_area :ocr_text, size: "6x6", class: 'form-control', autofocus: true %>
+    </div> 
 
-
-<div class="form-group has-success has-feedback">
-  <label class="control-label" for="inputSuccess2"><%= f.label :name %></label>
-   <br>
-    <%= f.text_field :name %>
-  </div>
-<div class="form-group has-success has-feedback">
-<label class="control-label" for="inputSuccess2"><%= f.label :company %></label>
     <br>
-    <%= f.text_field :company %>
-  </div>
-  <div class="form-group has-success has-feedback">
-
+    <label class="control-label"><%= f.label :full_name %></label>
+    <br>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Full Name'  %>
+    <br>  
+    <label class="control-label" for="inputSuccess2"><%= f.label :company %></label>
+    <br>
+    <%= f.text_field :company, class: 'form-control', placeholder: 'Company Name' %>
+    <br>
     <label class="control-label" for="inputSuccess2"><%= f.label :job_title %></label>
     <br>    
-    <%= f.text_field :job_title %>
-  </div>
-  <div class="form-group has-success has-feedback">
-
+    <%= f.text_field :job_title, class: 'form-control', placeholder: 'Job Title' %>
+    <br>
     <label class="control-label" for="inputSuccess2"><%= f.label :phone %></label><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="form-group has-success has-feedback">
-
-     <label class="control-label" for="inputSuccess2"><%= f.label :email %></label><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="form-group has-success has-feedback">
-
-    <label class="control-label" for="inputSuccess2"><%= f.label :company_address %></label><br>
-    <%= f.text_field :company_address %>
-  </div>
-
-
-
+    <%= f.text_field :phone, class: 'form-control', placeholder: 'Phone Number' %>
+    <br>
+    <label class="control-label" for="inputSuccess2"><%= f.label :email %></label><br>
+    <%= f.text_field :email, class: 'form-control', placeholder: 'Work Email' %>
+    <br>
+    <label class="control-label" for="inputSuccess2"><%= f.label :address %></label><br>
+    <%= f.text_field :company_address, class: 'form-control', placeholder: 'Company Address' %>
+    <br>
+  
   <div class="actions">
-    <%= f.submit %>
+  <%= f.submit %> 
+  <%= button_to 'Discard', @business_card, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <br>
+  <br>
+  <%= button_to 'Back', business_cards_path %>
+
   </div>
+
+
 
   <% end %>
   <% end %>
@@ -93,6 +85,4 @@
 
 <!-- 
 <%= link_to 'Edit', edit_business_card_path(@business_card) %> |
-<%= link_to 'Destroy', @business_card, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', business_cards_path %> |
  -->

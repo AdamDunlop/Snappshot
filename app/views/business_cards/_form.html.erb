@@ -1,7 +1,7 @@
 <div class="container">
 <section style="margin: 10px;">
 
-<fieldset style="border-radius: 5px; padding: 50px; min-height:150px;">
+<div style="padding-left: 50px; min-height:150px;">
 
   <% if current_user %> 
 
@@ -10,7 +10,6 @@
       <% if @business_card.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@business_card.errors.count, "error") %> prohibited this business_card from being saved:</h2>
-
           <ul>
           <% @business_card.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -18,20 +17,41 @@
           </ul>
         </div>
       <% end %> 
-      <%= f.label :image %>
-      <%= f.file_field :image, :html => {id: "business_card_image"} %>
-      <%= f.hidden_field :imageuri   %>
-        <span>
-          <%= @business_card.id %>
-        </span>
-
-      <span class="glyphicon glyphicon-camera"><input type="submit" id="imageSubmit" name="commit" value="Add Business Card"></span> 
+      <div class="row">
+        <div class="col-md-2">
+            <%= f.file_field :image, :html => {id: "business_card_image"} %> <%= f.hidden_field :imageuri %> <!-- file reader -->
+        </div>
+        <div class="col-sm-4" style="padding-left:200px">
+        <input type="button" value="remove" id="imageRemove" name="imageRemove" onClick="handleRemove()"/> <!-- clear image button -->
+        </div>
+        <div class="col-md-2" style="padding-left:120px">
+            <input type="submit" class="btn btn-primary" id="imageSubmit" name="commit" value="Add Business Card">
+        </div>
+      </div>
       <br>
       <% end %>
-  <% else %>
-    <% link_to sessions_path %>
-  <% end %>
-<canvas id="c" width='600' height='300'></canvas>
+    <% else %>
+  <% link_to sessions_path %>
+<% end %>
+
+<canvas id="c" width='800' height='400' style="border:2px solid grey; border-radius:9%">
+    <div id="buttons">
+      <input type="button" id="clear" value="Clear">
+    </div>
+</canvas>
+  <br>
+  <div class="row">
+  <div class="col-md-2" style="padding-right:100px">
+      <button id="rotateLeft" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left">90°</span></button>
+  </div>
+  <div class="col-sm-4" style="padding-left:120px; padding-right:50px">
+    <input type="range">
+  </div>
+  <div class="col-md-4" style="padding-left:200px">
+    <button id="rotateRight" class="btn btn-primary">90°<span class="glyphicon glyphicon-chevron-right"></span></button>
+  </div>
+  <br>
+  </div>
 <br>
 
  <script type="text/javascript">
@@ -40,8 +60,11 @@
   var imageform = document.getElementById("imageform");
   var dataURL = '';
   var canvas = new fabric.Canvas('c', {
-    backgroundColor: "#fff"
+    // backgroundColor: "#fff"
+    backgroundColor: 'rgb(240,240,240)'
+
   });
+
   var context = document.getElementById('c').getContext('2d'); 
   $('#business_card_image').on('change', function(e)
   {
@@ -49,38 +72,77 @@
     img.onload = function(e)
     {
       var imgInstance = new fabric.Image(img, {
-        left: 0,
-        top: 0,
-        angle: 0,
-        opacity: 1
+        left: 200,
+        top: 200,
+        opacity: 1,
+        originX: "center",
+        originY: "center",
+        centeredScaling: true,
       });
       canvas.add(imgInstance);
-    
-      $("#rotateLeft").on("click", function(e){
-        imgInstance.setAngle(90);
-        canvas.renderAll.bind(canvas);
-
-    })
 
     }
 
     img.src = URL.createObjectURL(e.target.files[0]);
   })
 
+      function handleRemove() {
+    canvas.clear().renderAll(); //Clear canvas function
+    }
+
    $("#imageSubmit").on("click", function() {
-    console.log("click");
-      $("#business_card_imageuri").val(canvas.toDataURL('image/png', 1.0));  
+    $("#business_card_imageuri").val(canvas.toDataURL('image/png', 1.0));  
    })
+
+    $("#rotateLeft").on("click", function(e){
+
+        var angle = canvas.item(0).getAngle()
+        angle += 90;
+        canvas.item(0).set({
+          angle: angle 
+        })
+      canvas.renderAll();
+    })
+
+    $("#rotateRight").on("click", function(e){
+
+        var angle = canvas.item(0).getAngle()
+        angle += -90;
+        canvas.item(0).set({
+          angle: angle 
+        })
+      canvas.renderAll();
+    })
+
+       $("#slider1").change(function () {                    
+       var newValue = $('#slider1').val();
+       $("#business_card_imageuri").val(newValue);
+});
+
+   document.getElementById('clear').addEventListener('click', function() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }, false);
+
+
+
+    // $("#greyScale").on("click", function(e) {
+    //     var img = canvas.item(0)
+        
+    //     img.filters.push(filters.Grayscale());
+    //     img.applyFilters(canvas.renderAll.bind(canvas));
+
+    // })
+
+    // $("clearCanvas").on("click", function(e) {
+    //   canvas.clear().renderAll();
+    // })
+
 
   </script>
 
-<button id="rotateLeft">Rotate 90(left)</button>
-<button>Rotate 90(right)</button>
-<button>Grey Scale</button>
-<input type="range", style="background: black;">Threshold</input>
+<br>
 
-
-</fieldset> 
+</div> 
 
 </div>
 

@@ -20,9 +20,7 @@
       <% if @business_cards.length > 0 %> 
       <% @business_cards.each do |business_card| %>
         <tr>
-          <div id="businesscards">
-          <td><%= image_tag(business_card.imageuri) %></td>
-          </div>
+          <td><%= image_tag(business_card.image) %></td>
           <td><%= business_card.name %></td>
           <td><%= business_card.company %></td>
           <td><%= business_card.job_title %></td>

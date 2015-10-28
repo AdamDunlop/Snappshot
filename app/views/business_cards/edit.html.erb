@@ -6,58 +6,47 @@
 <%= simple_form_for (@business_card) do |f| %>
   <div class="form-group has-success has-feedback">
 
-     <label class="control-label" for="inputSuccess2"><%= f.label :image %></label><br>
+     <label class="control-label" for="inputSuccess2" style="border:2px solid grey; border-radius:5%"><%= f.label :image %></label><br>
       <% if @business_card.image %>
       <%= image_tag(@business_card.image.url) %>
       <% else %>
       <%= f.file_field :image %>
       <% end %>
-  </div>
-  <div class="form-group has-success has-feedback">
 
      <label class="control-label" for="inputSuccess2"><%= f.label :ocr_text %></label><br>
     <%= f.text_area :ocr_text, size: "40x12" %>
-  </div> 
 
-<div class="form-group has-success has-feedback">
-  <label class="control-label" for="focusedInput"><%= f.label :name %></label>
-   <br>
+    <label class="control-label" for="focusedInput"><%= f.label :name %></label>
+    <br>
     <%= f.text_field :name %>
-  </div>
-<div class="form-group has-success has-feedback">
-<label class="control-label" for="inputSuccess2"><%= f.label :company %></label>
+
+    <label class="control-label" for="inputSuccess2"><%= f.label :company %></label>
     <br>
     <%= f.text_field :company %>
-  </div>
-  <div class="form-group has-success has-feedback">
 
     <label class="control-label" for="inputSuccess2"><%= f.label :job_title %></label>
-    <br
->    <%= f.text_field :job_title %>
-  </div>
-  <div class="form-group has-success has-feedback">
+    <br>    
+    <%= f.text_field :job_title %>
 
     <label class="control-label" for="inputSuccess2"><%= f.label :phone %></label><br>
     <%= f.telephone_field :phone %>
-  </div>
-  <div class="form-group has-success has-feedback">
 
      <label class="control-label" for="inputSuccess2"><%= f.label :email %></label><br>
     <%= f.email_field :email %>
-  </div>
-  <div class="form-group has-success has-feedback">
 
     <label class="control-label" for="inputSuccess2"><%= f.label :company_address %></label><br>
     <%= f.text_field :company_address %>
+    <div class="actions" for="inputsuccess2">
+      <%= f.submit %>
+    </div>
+  
   </div>
 
 
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 
   <% end %>
   <% end %>
 <%= link_to 'Back', business_cards_path %>
 </fieldset>
+</section>

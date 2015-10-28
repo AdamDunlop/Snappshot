@@ -34,13 +34,10 @@ class BusinessCardsController < ApplicationController
     end
   end
 
-  # GET /business_cards/1/edit
   def edit
 
   end
 
-  # POST /business_cards
-  # POST /business_cards.json
   def create
 
 
@@ -57,13 +54,8 @@ class BusinessCardsController < ApplicationController
       
     raw_text = e.text_for(image_data)
 
-
-
-    # byebug
     @business_card.ocr_text = raw_text
   
-    # #END
-
     @business_card.create_user_id = current_user.id
     respond_to do |format|
       if @business_card.save
