@@ -1,5 +1,4 @@
 <div class="container">
-<section style="margin: 10px;">
 
 <div style="padding-left: 50px; min-height:150px;">
 
@@ -17,15 +16,22 @@
           </ul>
         </div>
       <% end %> 
+
+
+
       <div class="row">
         <div class="col-md-2">
-            <%= f.file_field :image, :html => {id: "business_card_image"} %> <%= f.hidden_field :imageuri %> <!-- file reader -->
+          <div id="image_attachment">
+            <div class="wrapper">
+              <%= f.file_field :image, title: "Upload Business Card", :html => {id: "business_card_image"} %> <%= f.hidden_field :imageuri %> <!-- file reader -->
+            </div>
+          </div> 
         </div>
         <div class="col-sm-4" style="padding-left:200px">
-        <input type="button" value="remove" id="imageRemove" name="imageRemove" onClick="handleRemove()"/> <!-- clear image button -->
+        <%= link_to "Clear", "/business_cards/new" %>
         </div>
         <div class="col-md-2" style="padding-left:120px">
-            <input type="submit" class="btn btn-primary" id="imageSubmit" name="commit" value="Add Business Card">
+          <input type="submit" class="btn btn-primary" id="imageSubmit" name="commit" value="Add Business Card"> <!-- submit -->
         </div>
       </div>
       <br>
@@ -39,30 +45,68 @@
       <input type="button" id="clear" value="Clear">
     </div>
 </canvas>
-  <br>
-  <div class="row">
-  <div class="col-md-2" style="padding-right:100px">
-      <button id="rotateLeft" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left">90°</span></button>
+<br>
+<div class="row">
+  <div class="col-md-2" style="padding-right:50px">
+    <button id="rotateLeft" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left">90°</span></button>
   </div>
-  <div class="col-sm-4" style="padding-left:120px; padding-right:50px">
-    <input type="range">
-  </div>
+  <div class="col-md-4" style="padding-left:120px; padding-right:50px">
+    <label>Scale:</label><input type="range" id="scale-image" value="100" min="0" max="255"></span>
+   </div>
   <div class="col-md-4" style="padding-left:200px">
     <button id="rotateRight" class="btn btn-primary">90°<span class="glyphicon glyphicon-chevron-right"></span></button>
   </div>
+</div>
+  <label><span>Grayscale: <input type="checkbox" id="grayscale" ></label>
   <br>
+    <label><span>Sharpen:</span> <input type="checkbox" id="sharpen"></label>
+    
+    <br>
+    <label><span>Brightness:</span> <input type="checkbox" id="brightness" ></label>  
+    <div class="row">
+    <div class="col-md-2" style="centered">
+    <input type="range" id="brightness-value" value="100" min="0" max="255">
+    </div>
   </div>
-<br>
 
  <script type="text/javascript">
 
   var imageInput = document.getElementById("business_card_image");
   var imageform = document.getElementById("imageform");
   var dataURL = '';
-  var canvas = new fabric.Canvas('c', {
-    // backgroundColor: "#fff"
-    backgroundColor: 'rgb(240,240,240)'
+  var canvas = new fabric.Canvas('c', { backgroundColor: '#f5f5f5' }), 
 
+  f = fabric.Image.filters;
+
+  function applyFilter(index, filter) {
+    var obj = canvas.getActiveObject();
+    obj.filters[index] = filter;
+    obj.applyFilters(canvas.renderAll.bind(canvas));
+  }
+
+  function applyFilterValue(index, prop, value) {
+    var obj = canvas.getActiveObject();
+    if (obj.filters[index]) {
+      obj.filters[index][prop] = value;
+      obj.applyFilters(canvas.renderAll.bind(canvas));
+    }
+  } 
+
+  canvas.on({
+    'object:selected': function() {
+      fabric.util.toArray(document.getElementsByTagName('input'))
+                          .forEach(function(el){ el.disabled = false; })
+
+      var filters = ['grayscale', 'brightness', 'sharpen'];
+      for (var i = 0; i < filters.length; i++) {
+        $(filters[i]).checked = !!canvas.getActiveObject().filters[i];
+      }
+    },
+
+    'selection:cleared': function() {
+      fabric.util.toArray(document.getElementsByTagName('input'))
+      .forEach(function(el){ el.disabled = true; })
+    }
   });
 
   var context = document.getElementById('c').getContext('2d'); 
@@ -74,71 +118,96 @@
       var imgInstance = new fabric.Image(img, {
         left: 200,
         top: 200,
-        opacity: 1,
         originX: "center",
         originY: "center",
+        scaleX: 1,
+        scaleY: 1,
         centeredScaling: true,
+
       });
       canvas.add(imgInstance);
-
     }
 
     img.src = URL.createObjectURL(e.target.files[0]);
   })
 
-      function handleRemove() {
-    canvas.clear().renderAll(); //Clear canvas function
-    }
 
-   $("#imageSubmit").on("click", function() {
+  // $("#business_card_image").elevateZoom();
+
+  function handleRemove() {
+    canvas.clear(); //Clear canvas function
+  }
+
+  $("#imageSubmit").on("click", function() {
     $("#business_card_imageuri").val(canvas.toDataURL('image/png', 1.0));  
-   })
+  })
 
-    $("#rotateLeft").on("click", function(e){
+  $("#rotateLeft").on("click", function(e){
 
-        var angle = canvas.item(0).getAngle()
-        angle += 90;
-        canvas.item(0).set({
-          angle: angle 
-        })
-      canvas.renderAll();
-    })
+      var angle = canvas.item(0).getAngle()
+      angle += 90;
+      canvas.item(0).set({
+        angle: angle 
+      })
+    canvas.renderAll();
+  })
 
-    $("#rotateRight").on("click", function(e){
+  $("#rotateRight").on("click", function(e){
 
-        var angle = canvas.item(0).getAngle()
-        angle += -90;
-        canvas.item(0).set({
-          angle: angle 
-        })
-      canvas.renderAll();
-    })
+      var angle = canvas.item(0).getAngle()
+      angle += -90;
+      canvas.item(0).set({
+        angle: angle 
+      })
+    canvas.renderAll();
+  })
 
-       $("#slider1").change(function () {                    
-       var newValue = $('#slider1').val();
-       $("#business_card_imageuri").val(newValue);
-});
+  $("#slider1").change(function () {                    
+  var newValue = $('#slider1').val();
+    $("#business_card_imageuri").val(newValue);
+  }); 
 
-   document.getElementById('clear').addEventListener('click', function() {
+  document.getElementById('clear').addEventListener('click', function() {
         context.clearRect(0, 0, canvas.width, canvas.height);
       }, false);
 
+  $('#grayscale').on('click', function() {
+      applyFilter(0, this.checked && new f.Grayscale()); 
+    });
+
+  $('#brightness').on('click', function() {
+    applyFilter( 1, this.checked && new f.Brightness({ 
+      brightness: parseInt($('#brightness-value').val(), 10) 
+      }))
+  });
+
+  $('#brightness-value').on('change', function() {
+    applyFilterValue(1, 'brightness', parseInt($(this).val(), 10)) 
+  });
+
+  $('#sharpen').on('click', function() {
+    applyFilter(2, this.checked && new f.Convolute({
+      matrix: [  0, -1,  0,
+                -1,  5, -1,
+                 0, -1,  0 ]
+    }));
+  });
+
+  $('#scale-image').on('change', function() {
+    var obj = canvas.getActiveObject();
+    var val = $(this).val();
+    obj.setScaleX(val/100);
+    obj.setScaleY(val/100);
+    canvas.renderAll()  ;
+    console.log(val)
+    console.log(obj)
+  })
 
 
-    // $("#greyScale").on("click", function(e) {
-    //     var img = canvas.item(0)
-        
-    //     img.filters.push(filters.Grayscale());
-    //     img.applyFilters(canvas.renderAll.bind(canvas));
-
-    // })
-
-    // $("clearCanvas").on("click", function(e) {
-    //   canvas.clear().renderAll();
-    // })
 
 
   </script>
+
 
 <br>
 

@@ -9,10 +9,15 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
- *= require_tree .
+ *= require bootstrap
+ *= require_tree 
  *= require_self
  */
+
+@import "bootstrap-sprockets"
+@import "bootstrap"
+
+
 body {  
     padding-top: 50px;   
     font-family: Verdana;
@@ -53,7 +58,7 @@ fieldset legend {
 }
 input[type=range] {
   -webkit-appearance: none;
-  margin: 18px 0;
+  margin: 18px;
   width: 100%;
 }
 input[type=range]:focus {
@@ -138,15 +143,63 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #367ebd;
+
+}
+
+input[type=submit]:hover {
+     background-position: 0px;
 }
 
 #buttons {
   position: absolute;
   top: 5px;
   left: 10px;
+  background-color: transparent;  
 }
 #buttons > input {
   padding: 10px;
   display: block;
   margin-top: 5px;
+}
+
+.controls { display: inline-block; background: #fafafa; margin-left: 10px; padding: 15px; border-left: 1px dotted #aaa; }
+
+.carousel{
+    overflow:hidden;
+    width:100%;
+}
+.carousel:hover {
+}
+.panes{
+    list-style:none;
+    position:relative;
+    width:500%; /* Number of panes * 100% */
+    overflow:hidden; /* This is used solely to clear floats, it does not add functionality. */
+        
+    -moz-animation:carousel 30s infinite;
+    -webkit-animation:carousel 30s infinite;
+    animation:carousel 30s infinite;
+}
+.panes > li{
+    position:relative;
+    float:left;
+    width:20%; /* 100 / number of panes */
+    background-color: transparent;
+}
+.carousel img{
+    display:block;
+  }
+.carousel h2{
+    font-size:1em;
+    padding:0.5em;
+    position:absolute;
+    right:10px;
+    bottom:10px;
+    left:10px;
+    text-align:right;
+    color:#fff;
+    background-color:rgba(0,0,0,0.75);
+}
+.carousel-control.left, .carousel-control.right {
+    background-color: transparent;
 }

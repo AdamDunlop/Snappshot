@@ -1,52 +1,49 @@
 <section style="margin: 50px;">
 
-<fieldset style="border-radius: 5px; padding: 20px; min-height:100px; width:600px;">
+  <fieldset style="border-radius: 5px; padding: 20px; min-height:100px; width:200px;">
 
-<% if current_user %>
-<%= simple_form_for (@business_card) do |f| %>
-  <div class="form-group has-success has-feedback">
-
-     <label class="control-label" for="inputSuccess2" style="border:2px solid grey; border-radius:5%"><%= f.label :image %></label><br>
+  <% if current_user %>
+  <%= simple_form_for (@business_card),  :html => {:class => "form-horizontal center"} do |f| %>
+    <div class="form-group has-success has-feedback">
+      <label class="control-label" for="inputSuccess2" style="border:2px solid grey; border-radius:5%"><%= f.label :image %></label><br>
       <% if @business_card.image %>
       <%= image_tag(@business_card.image.url) %>
       <% else %>
       <%= f.file_field :image %>
       <% end %>
 
-     <label class="control-label" for="inputSuccess2"><%= f.label :ocr_text %></label><br>
-    <%= f.text_area :ocr_text, size: "40x12" %>
+      <label class="control-label" for="inputSuccess2"><%= f.label :extracted %></label><br>
+      <%= f.text_area :ocr_text, size: "40x12" %>
 
-    <label class="control-label" for="focusedInput"><%= f.label :name %></label>
-    <br>
-    <%= f.text_field :name %>
+      <label class="control-label" for="focusedInput"><%= f.label :name %></label>
+      <br>
+      <%= f.text_field :name %>
 
-    <label class="control-label" for="inputSuccess2"><%= f.label :company %></label>
-    <br>
-    <%= f.text_field :company %>
+      <label class="control-label" for="inputSuccess2"><%= f.label :company %></label>
+      <br>
+      <%= f.text_field :company %>
 
-    <label class="control-label" for="inputSuccess2"><%= f.label :job_title %></label>
-    <br>    
-    <%= f.text_field :job_title %>
+      <label class="control-label" for="inputSuccess2"><%= f.label :job_title %></label>
+      <br>    
+      <%= f.text_field :job_title %>
 
-    <label class="control-label" for="inputSuccess2"><%= f.label :phone %></label><br>
-    <%= f.telephone_field :phone %>
+      <label class="control-label" for="inputSuccess2"><%= f.label :phone %></label><br>
+      <%= f.telephone_field :phone %>
 
-     <label class="control-label" for="inputSuccess2"><%= f.label :email %></label><br>
-    <%= f.email_field :email %>
+       <label class="control-label" for="inputSuccess2"><%= f.label :email %></label><br>
+      <%= f.email_field :email %>
 
-    <label class="control-label" for="inputSuccess2"><%= f.label :company_address %></label><br>
-    <%= f.text_field :company_address %>
-    <div class="actions" for="inputsuccess2">
-      <%= f.submit %>
+      <label class="control-label" for="inputSuccess2"><%= f.label :company_address %></label><br>
+      <%= f.text_field :company_address %>
+      
+      <div class="actions" for="inputsuccess2">
+        <%= f.submit %>
+      </div>
+    
     </div>
-  
-  </div>
 
-
-
-
+    <% end %>
   <% end %>
-  <% end %>
-<%= link_to 'Back', business_cards_path %>
-</fieldset>
+  <%= link_to 'Back', business_cards_path %>
+  </fieldset>
 </section>

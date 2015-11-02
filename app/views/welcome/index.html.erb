@@ -1,8 +1,89 @@
-   
-  <div style="padding-left:390px">
-   <% if current_user -%>Welcome, <%= current_user.name.capitalize %><% end -%>
+   <div style="padding-left:390px">
+
+   <h3><% if current_user -%>Welcome, <%= current_user.name.capitalize %></h3>
    <br>
-   <br>
-   <%= button_to 'Add a New Businesscard', new_business_card_path, :method => :get %>
+   <% end -%>
+</div>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <center><%=image_tag('acl.jpg', :size => '750x500',) %></center>
+    </div>
+
+    <div class="item">
+      <center><%= image_tag('iheart.jpg', :size => '750x500') %></center>  
+    </div>
+
+    <div class="item">
+      <center><%= image_tag('chrisyammine.jpg', :size => '750x500') %> </center>
+    </div>
+
+    <div class="item">
+      <center><%= image_tag('image6.jpg', :size => '750x500')%> </center>
+    </div>  
+
   </div>
 
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+</div>
+   <br>
+   <br>
+<div style="padding-left:390px">
+
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Sign In</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Sign In</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+
+        </p>
+        <p>
+          
+        </p>
+        <p>
+          
+        </p>
+        <p>
+          
+        </p>
+      </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+ <br>
+
+   <br>
+   <%= button_to 'Add a New Businesscard', new_business_card_path, :method => :get %>
+</div>

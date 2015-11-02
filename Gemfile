@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'angularjs-rails', '~> 1.4.4'
 
+gem 'bootstrap-sass', '~> 3.2.0'
+
+# gem 'autoprefixer-rails '
 # gem 'theruybracer', platforms: :ruby
 
 gem 'tesseract-ocr', '~> 0.1.8' 

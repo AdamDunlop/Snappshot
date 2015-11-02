@@ -1,88 +1,56 @@
-<section style="margin: 40px;">
 
-<!-- <fieldset style="border-radius: 5px; padding: 5px; min-height:100px; width:500px;"> -->
 <p id="notice"><%= notice %></p>
 <% if current_user %>
 <div class="container">
-<%= simple_form_for (@business_card) do |f| %>
-    <div style="left-padding=20">
-
-      <label class="control-label" for="inputSuccess2"><%= f.label :image %></label><br>
+<%= simple_form_for (@business_card), :html => {:class => "form-horizontal center"} do |f| %>
+    <div style="form-group">
+      <br>
       <% if @business_card.image %>
         <%= image_tag(@business_card.imageuri) %>
       <% else %>
         <%= f.file_field :image %>
       <% end %>
     </div>
-    <label class="control-label" for="inputSuccess2"><%= f.label :ocr_text %></label><br>
-    <div colspan="3">
-    <%= f.text_area :ocr_text, size: "6x6", class: 'form-control', autofocus: true %>
+    
+    <br>
+    <div class="col-md-3">
+    <%= f.text_area :ocr_text, size: "6x9", class: 'form-control', autofocus: true %>
     </div> 
 
-    <br>
-    <label class="control-label"><%= f.label :full_name %></label>
-    <br>
+    <div class="col-md-6">
       <%= f.text_field :name, class: 'form-control', placeholder: 'Full Name'  %>
-    <br>  
-    <label class="control-label" for="inputSuccess2"><%= f.label :company %></label>
+    </div>  
     <br>
+    <div class="col-md-6">
     <%= f.text_field :company, class: 'form-control', placeholder: 'Company Name' %>
+    </div>
     <br>
-    <label class="control-label" for="inputSuccess2"><%= f.label :job_title %></label>
-    <br>    
+   <div class="col-md-6">
     <%= f.text_field :job_title, class: 'form-control', placeholder: 'Job Title' %>
+    </div>
     <br>
-    <label class="control-label" for="inputSuccess2"><%= f.label :phone %></label><br>
+    <div class="col-md-6">
     <%= f.text_field :phone, class: 'form-control', placeholder: 'Phone Number' %>
+    </div>
     <br>
-    <label class="control-label" for="inputSuccess2"><%= f.label :email %></label><br>
+    <div class="col-md-6">
     <%= f.text_field :email, class: 'form-control', placeholder: 'Work Email' %>
+    </div>
     <br>
-    <label class="control-label" for="inputSuccess2"><%= f.label :address %></label><br>
+    <div class="col-md-6">
     <%= f.text_field :company_address, class: 'form-control', placeholder: 'Company Address' %>
+    </div>
     <br>
-  
-  <div class="actions">
-  <%= f.submit %> 
-  <%= button_to 'Discard', @business_card, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <div class="col-md-8">
   <br>
+    <%= f.submit %> 
+    <%= button_to 'Discard', @business_card, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <br>
+    <%= link_to 'Back', business_cards_path %>
+  </div>
   <br>
-  <%= button_to 'Back', business_cards_path %>
 
   </div>
 
-
-
   <% end %>
   <% end %>
-  <!-- </fieldset> -->
-
-<!--   <strong><%= @business_card.name %></strong>
-  <p>
-    <%= image_tag(@business_card.image.url) %>
-  </p>
-  <strong>Click to edit: </strong>
-  <p contenteditable="true">
-    <%= @business_card.ocr_text %>
-  </p>
-  <strong>Company:</strong>
-  <p contenteditable="true">
-    <%= @business_card.company %>
-  </p>
-  <strong>Job Title:</strong>
-  <p contenteditable="true">
-    <%= @business_card.job_title %>
-  </p>
-  <strong>Address:</strong>
-  <p contenteditable="true">
- <%= @business_card.company_address %>
-  </p>
-    <strong>Phone:</strong>
-  <p contenteditable="true">
- <%= @business_card.phone %>
-  </p>
-</div> -->
-
-<!-- 
-<%= link_to 'Edit', edit_business_card_path(@business_card) %> |
- -->
