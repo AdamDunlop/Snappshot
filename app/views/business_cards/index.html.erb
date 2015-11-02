@@ -1,24 +1,81 @@
 
+<div class="navbar-wrapper">
+
+  <div class="container-fluid">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        </div>
+        <a class="navbar-brand">Snappshot</a>            
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class=""><%= link_to("Home", root_path) %></li>
+              <li class="dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Business Cards <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/business_cards/new">Add New Business Card</a></li>
+                <li><a href="/business_cards">View Business Contacts</a></li>
+            </ul>
+              <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/create_users/new">Signup</a></li>
+                  <li><a href="/sessions/new">Login</a></li>
+                </ul>
+              </li>
+            </ul>
+
+          <ul class="nav navbar-nav pull-right">
+            <li class=" dropdown"><a href="" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+            <strong>Signed in as:</strong> 
+            <% if current_user %> 
+            <%= current_user.name.capitalize  %> 
+            <% end %>
+            <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% if current_user %> 
+                  <li><a href="#">My Profile</a></li>
+                  <li><a href="#">Change Password</a></li>
+                  <% end %>
+              </ul>
+            </li>
+            <li class=""><%= link_to("Logout", sessions_path("current"), method: :delete) %></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<% if flash[:message] %>
+  <div class="login-error">
+  <%= flash[:message] %>
+  </div>
+<% end %>
+
 <p id="notice"><%= notice %></p>  
   <div style="border-radius: 5px; padding-left: 150px; padding-right: 150px;">
-
-
-
-  <h3>Business Cards</h3>
-  <br>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Company</th>
-        <th>Title</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>Action</th>
-      </tr>
-    </thead>
+    <h3>Business Cards</h3>
+    <br>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Title</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+      </table>
     <tbody>
       <% if @business_cards.length > 0 %> 
       <% @business_cards.each do |business_card| %>
@@ -43,6 +100,12 @@
   <%= button_to 'Add New Businesscard', new_business_card_path, :method => :get %>
 </div>
 
+<div class="navbar-footer">
+  <div class="row">
+    <ul class="nav navbar-nav">
 
+      </ul>
+  </div>
+</div>
 
 

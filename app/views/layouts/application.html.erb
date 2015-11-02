@@ -20,91 +20,16 @@
 
 <title>Snappshot</title>
 </head>
-<body> 
+<body>
 
-
-<div class="navbar-wrapper">
-
-            <div class="container-fluid">
-                <nav class="navbar navbar-default">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            </button>
-                            </div>
-                             <a class="navbar-brand">Snappshot</a>
-                            
-                        <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                    
-                            <li class=""><%= link_to("Home", root_path) %>
-                            </li>
-                    
-                            <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Business Cards <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                    <li><a href="/business_cards/new">Add New Business Card</a></li>
-                                    <li><a href="/business_cards">View Business Contacts</a></li>
-                                </ul>
-                            </li>
-                            <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/create_users/new">Signup</a></li>
-                                    <li><a href="/sessions/new">Login</a></li>
-                                </ul>
-                            </ul>
-                          <!--<button type="button" class="btn btn-primary btn-sm button-home" data-toggle="modal" data-target="#myModal">Sign up</button>
-
-                            <button type="button" class="btn btn-primary btn-sm button-home" data-toggle="modal" data-target="#myModal2">Sign in</button> -->
-                            <ul class="nav navbar-nav pull-right">
-                                <li class=" dropdown"><a href="" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Signed in as <% if current_user %> 
-                                <%= current_user.name.capitalize  %> 
-                                <% end %>
-                                <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                          <% if current_user %> 
-                                            <li><a href="/profile">My Profile</a></li>
-                                            <li><a href="#">Change Password</a></li>
-                                            <% end %>
-                                        </ul>
-                                </li>
-                                <li class=""><%= link_to("Logout", sessions_path("current"), method: :delete) %></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-<% if flash[:message] %>
-  <div class="login-error">
-  <%= flash[:message] %>
-  </div>
-<% end %>
 
 
 <%= yield %>
+
 
     
 
 </body>
     
-<hr>
-<div class="container footer">
-     <div class="navbar-footer">
-        <div class="row">
-          <ul class="nav navbar-nav">
-        
-            <li class="active"><div class="col-md-1"><%= link_to "About Us", root_path %></div></li>
-            <li class="active"><div class="col-md-1">FAQ<br>Privacy Policy<br>Security</div></li>
-            <li class="active"><div class="col-md-1"><%= link_to "Contacts", root_path %></div></li>
-       
-          </ul>
-        </div>
-    <div>
-</div>
 
 </html>

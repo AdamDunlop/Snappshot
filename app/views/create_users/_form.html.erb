@@ -1,9 +1,8 @@
-    
-<section>
-
-    <fieldset style="border-radius: 1px; padding-left: 1px; min-height:110px; width:500px;">
-        <legend>Sign Up</legend>
-        <legend>
+<div class="row", style="color:#8585AD; padding-left:150px">
+  <div class="col-md-6">
+  <br>
+     <h2 class="modal-title"><b>Sign Up</b></h2>
+          <hr>  
         <%= simple_form_for(@create_user) do |f| %>
         
         <%= f.label :name %>
@@ -27,7 +26,11 @@
         <br>
         <br>
         <% end %>
-        </legend>
-    </fieldset>
-</section>
-<br>
+    <br>
+    <br>
+    <br>
+      <div class="modal-footer">
+       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>

@@ -1,22 +1,22 @@
-<section style="padding-left:390px">
-
-  <fieldset style="border-radius: 5px; padding: 5px; min-height:100px; width:500px;">
-    <legend>Login</legend>
-    <legend>
+<div class="row", style="color:#8585AD">
+  <div class="col-md-6 col-md-offset-3">
+  <br>
+     <h2 class="modal-title"><b>Sign In</b></h2>
+     <hr>
     <%= form_tag sessions_path do %> 
-    <div>
       <%=label_tag "email" %><br>
-      <%=text_field_tag "email" %> 
-    </div>
-    <div>
+      <%=text_field_tag "email" %><br>
+
       <%=label_tag "password" %><br>
       <%=password_field_tag "password" %><br>
-    </div>
-    <br>
-      <%=submit_tag "Login" %>
-    <br>
+      <br>
+      <b><%=button_tag "Login" %></b>
     <% end %>
     <br>
-    </legend>
-  </fieldset>
-</section>
+    <br>
+    <br>
+  </div>
+</div>
+  <div class="modal-footer">
+   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
