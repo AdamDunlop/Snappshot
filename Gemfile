@@ -23,7 +23,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 
 gem 'tesseract-ocr', '~> 0.1.8' 
 
-gem 'rtesseract', '~> 1.3.0'
+# gem 'rtesseract', '~> 1.3.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -32,8 +32,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
-gem 'simple_form'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -57,7 +55,7 @@ gem 'rmagick'
 
 gem 'mini_magick', '~> 4.3.3'
 
-gem 'bootsy', '~> 2.1.0'
+# gem 'bootsy', '~> 2.1.0'
 
 gem 'jquery-fileupload-rails'
 
