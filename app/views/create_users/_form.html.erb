@@ -1,9 +1,9 @@
+<hr>
 <div class="row", style="color:#8585AD; padding-left:150px">
-  <div class="col-md-6">
-  <br>
+  <div class="col-lg-6">
      <h2 class="modal-title"><b>Sign Up</b></h2>
           <hr>  
-        <%= simple_form_for(@create_user) do |f| %>
+      <%= simple_form_for(@create_user) do |f| %>
         
         <%= f.label :name %>
         <br>
@@ -25,12 +25,10 @@
         <%= f.submit :submit %>
         <br>
         <br>
-        <% end %>
-    <br>
-    <br>
-    <br>
-      <div class="modal-footer">
-       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
+      <% end %>
+
   </div>
+</div>
+<div class="modal-footer">
+ <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>

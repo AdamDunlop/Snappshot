@@ -1,49 +1,115 @@
-<section style="margin: 50px;">
+<div class="navbar-wrapper">
 
-  <fieldset style="border-radius: 5px; padding: 20px; min-height:100px; width:200px;">
+  <div class="container-fluid">
+      <nav class="navbar navbar-default">
+          <div class="container">
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button>
+                  </div>
+                   <a class="navbar-brand">Snappshot</a>
+                  
+              <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav">
+                          
+                  <li class=""><%= link_to("Home", root_path) %>
+                  </li>
+          
+                  <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Business Cards <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                          <li><a href="/business_cards/new">Add New Business Card</a></li>
+                          <li><a href="/business_cards">View Business Contacts</a></li>
+                      </ul>
+                  </li>
+             
 
-  <% if current_user %>
-  <%= simple_form_for (@business_card),  :html => {:class => "form-horizontal center"} do |f| %>
-    <div class="form-group has-success has-feedback">
-      <label class="control-label" for="inputSuccess2" style="border:2px solid grey; border-radius:5%"><%= f.label :image %></label><br>
+                  <ul class="nav navbar-nav pull-right">
+                      <li class=" dropdown"><a href="" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Signed in as <% if current_user %> 
+                      <%= current_user.name.capitalize  %> 
+                      <% end %>
+                      <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <% if current_user %> 
+                                  <li><a href="/profile">My Profile</a></li>
+                                  <li><a href="#">Change Password</a></li>
+                                  <% end %>
+                              </ul>
+                      </li>
+                      <li class=""><%= link_to("Logout", sessions_path("current"), method: :delete) %></li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+  </div>
+</div>
+<% if flash[:message] %>
+  <div class="login-error">
+  <%= flash[:message] %>
+  </div>
+<% end %>
+
+<!-- end of nav bar -->
+
+<p id="notice"><%= notice %></p>
+<% if current_user %>
+<div class="container"; style="padding-left: 100px">
+<%= simple_form_for (@business_card), :html => {:class => "form-horizontal center"} do |f| %>
+    <div style="form-group">
+      <br>
       <% if @business_card.image %>
-      <%= image_tag(@business_card.image.url) %>
+        <%= image_tag(@business_card.imageuri) %>
       <% else %>
-      <%= f.file_field :image %>
+        <%= f.file_field :image %>
       <% end %>
-
-      <label class="control-label" for="inputSuccess2"><%= f.label :extracted %></label><br>
-      <%= f.text_area :ocr_text, size: "40x12" %>
-
-      <label class="control-label" for="focusedInput"><%= f.label :name %></label>
       <br>
-      <%= f.text_field :name %>
-
-      <label class="control-label" for="inputSuccess2"><%= f.label :company %></label>
       <br>
-      <%= f.text_field :company %>
-
-      <label class="control-label" for="inputSuccess2"><%= f.label :job_title %></label>
-      <br>    
-      <%= f.text_field :job_title %>
-
-      <label class="control-label" for="inputSuccess2"><%= f.label :phone %></label><br>
-      <%= f.telephone_field :phone %>
-
-       <label class="control-label" for="inputSuccess2"><%= f.label :email %></label><br>
-      <%= f.email_field :email %>
-
-      <label class="control-label" for="inputSuccess2"><%= f.label :company_address %></label><br>
-      <%= f.text_field :company_address %>
-      
-      <div class="actions" for="inputsuccess2">
-        <%= f.submit %>
-      </div>
-    
     </div>
+    <div class="col-sm-4">
+    <%= f.text_area :ocr_text, size: "7x9", class: 'form-control', autofocus: true %>
+    </div> 
+
+    <div class="col-md-6">
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Full Name'  %>
+    </div>  
+    <br>
+    <div class="col-md-6">
+    <%= f.text_field :company, class: 'form-control', placeholder: 'Company Name' %>
+    </div>
+    <br>
+   <div class="col-md-6">
+    <%= f.text_field :job_title, class: 'form-control', placeholder: 'Job Title' %>
+    </div>
+    <br>
+    <div class="col-md-6">
+    <%= f.text_field :phone, class: 'form-control', placeholder: 'Phone Number' %>
+    </div>
+    <br>
+    <div class="col-md-6">
+    <%= f.text_field :email, class: 'form-control', placeholder: 'Work Email' %>
+    </div>
+    <br>
+    <div class="col-md-6">
+    <%= f.text_field :company_address, class: 'form-control', placeholder: 'Company Address' %>
+    </div>
+    <br>
+  <div class="col-md-8">
+  <br>
+    <%= f.submit %> 
+    <%= link_to 'Discard', @business_card, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <br>
+    <br>
+    <%= link_to 'Back', business_cards_path %>
+  </div>
+  <br>
+
+  </div>
 
     <% end %>
   <% end %>
-  <%= link_to 'Back', business_cards_path %>
-  </fieldset>
-</section>
+  <br>
+  <br>

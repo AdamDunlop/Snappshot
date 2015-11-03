@@ -3,7 +3,6 @@ require 'base64'
 require 'rmagick'
 
 
-
 class BusinessCardsController < ApplicationController
   #   include CarrierwaveBase64Uploader
 
@@ -40,7 +39,6 @@ class BusinessCardsController < ApplicationController
 
   def create
 
-
     @business_card = BusinessCard.new(business_card_params)
     # #BEGIN ocr text extrtaction
     file = params[:business_card][:image].tempfile.path
@@ -57,10 +55,11 @@ class BusinessCardsController < ApplicationController
     @business_card.ocr_text = raw_text
   
     @business_card.create_user_id = current_user.id
+
     respond_to do |format|
       if @business_card.save
         # byebug  
-        format.html { redirect_to business_card_path(id: @business_card.id),  notice: 'Business card was successfully created.' }
+        format.html { redirect_to business_card_path(id: @business_card.id)}
         format.json { render :show, status: :created, location: @business_card }
       else
         format.html { render :new }
@@ -74,7 +73,7 @@ class BusinessCardsController < ApplicationController
   def update
     respond_to do |format|
       if @business_card.update(business_card_params)
-        format.html { redirect_to business_cards_path, notice: 'Business card was successfully updated.' }
+        format.html { redirect_to business_cards_path }
         format.json { render :show, status: :ok, location: @business_card }
       else
         format.html { render :edit }
@@ -88,7 +87,7 @@ class BusinessCardsController < ApplicationController
   def destroy
     @business_card.destroy
     respond_to do |format|
-      format.html { redirect_to business_cards_url, notice: 'Business card was successfully destroyed.' }
+      format.html { redirect_to business_cards_url }
       format.json { head :no_content }
     end
   end
@@ -101,11 +100,6 @@ class BusinessCardsController < ApplicationController
     end 
     render nothing: true, status: :ok
   end
- 
-  def save_edited_image
-    byebug
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,75 +1,74 @@
 <div class="navbar-wrapper">
 
-            <div class="container-fluid">
-                <nav class="navbar navbar-default">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            </button>
-                            </div>
-                             <a class="navbar-brand">Snappshot</a>
-                            
-                        <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                    
-                            <li class=""><%= link_to("Home", root_path) %>
-                            </li>
-                    
-                            <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Business Cards <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                    <li><a href="/business_cards/new">Add New Business Card</a></li>
-                                    <li><a href="/business_cards">View Business Contacts</a></li>
-                                </ul>
-                            </li>
-                            <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/create_users/new">Signup</a></li>
-                                    <li><a href="/sessions/new">Login</a></li>
-                                </ul>
-                            </ul>
-     
-                            <ul class="nav navbar-nav pull-right">
-                                <li class=" dropdown"><a href="" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Signed in as <% if current_user %> 
-                                <%= current_user.name.capitalize  %> 
-                                <% end %>
-                                <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                          <% if current_user %> 
-                                            <li><a href="/profile">My Profile</a></li>
-                                            <li><a href="#">Change Password</a></li>
-                                            <% end %>
-                                        </ul>
-                                </li>
-                                <li class=""><%= link_to("Logout", sessions_path("current"), method: :delete) %></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
+  <div class="container-fluid">
+      <nav class="navbar navbar-default">
+          <div class="container">
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button>
+                  </div>
+                   <a class="navbar-brand">Snappshot</a>
+                  
+              <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav">
+                          
+                  <li class=""><%= link_to("Home", root_path) %>
+                  </li>
+          
+                  <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Business Cards <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                          <li><a href="/business_cards/new">Add New Business Card</a></li>
+                          <li><a href="/business_cards">View Business Contacts</a></li>
+                      </ul>
+                  </li>
+             
+
+                  <ul class="nav navbar-nav pull-right">
+                      <li class=" dropdown"><a href="" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Signed in as <% if current_user %> 
+                      <%= current_user.name.capitalize  %> 
+                      <% end %>
+                      <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <% if current_user %> 
+                                  <li><a href="/profile">My Profile</a></li>
+                                  <li><a href="#">Change Password</a></li>
+                                  <% end %>
+                              </ul>
+                      </li>
+                      <li class=""><%= link_to("Logout", sessions_path("current"), method: :delete) %></li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+  </div>
+</div>
 <% if flash[:message] %>
   <div class="login-error">
   <%= flash[:message] %>
   </div>
 <% end %>
 
+<!-- end of nav bar -->
+<!--  -->
+<div style="padding-left:300px; color:#666699">
 
-<div style="padding-left:390px">
-
-   <h3><% if current_user -%>Welcome, <%= current_user.name.capitalize %></h3>
+   <h4><% if current_user -%>Welcome, <%= current_user.name.capitalize %></h4>
    <br>
    <% end -%>
+      <%= button_to 'Add a New Businesscard', new_business_card_path, id: 'button', class: "btn btn-info btn-lg", :method => :get %>
+      <br>
+      <br>
 </div>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
     <li data-target="#myCarousel" data-slide-to="3"></li>
   </ol>
@@ -77,22 +76,22 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <center><%=image_tag('acl.jpg', :size => '750x500',) %></center>
+
+      <center><%=image_tag('acl.jpg', :size => '900x450',) %></center>
     </div>
 
     <div class="item">
-      <center><%= image_tag('iheart.jpg', :size => '750x500') %></center>  
+      <center><%= image_tag('iheart.jpg', :size => '900x450') %></center>  
     </div>
 
     <div class="item">
-      <center><%= image_tag('chrisyammine.jpg', :size => '750x500') %> </center>
+      <center><%= image_tag('chrisyammine.jpg', :size => '900x450') %> </center>
     </div>
 
     <div class="item">
-      <center><%= image_tag('image6.jpg', :size => '750x500')%> </center>
+      <center><%= image_tag('image6.jpg', :size => '900x450')%> </center>
     </div>  
-
-  </div>
+    </div>
 
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -107,8 +106,7 @@
 </div>
    <br>
    <br>
-<div style="padding-left:390px">
-
+<div style="padding-left:300px">
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" href="/sessions/new">Sign In</button>
 
   <!-- Modal -->
@@ -141,27 +139,12 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-      <br>
-     <h2 class="modal-title"><b>Sign Up</b></h2>
-     <hr>
-   
-    <br>
-  <br>
-</div>
-          </div>
-        </div>           
-      </div>
-    <br>
+        <h2 class="modal-title"><b>Sign Up</b></h2>
     </div>
   </div>
+    <br>
 </div>
-
-  <br>
-  <br>
-  <%= button_to 'Add a New Businesscard', new_business_card_path, :method => :get %>
-</div>
+  
 <br>
 <br>
 </div>

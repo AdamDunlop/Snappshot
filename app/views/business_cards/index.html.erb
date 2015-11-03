@@ -1,4 +1,3 @@
-
 <div class="navbar-wrapper">
 
   <div class="container-fluid">
@@ -22,17 +21,9 @@
                 <li><a href="/business_cards/new">Add New Business Card</a></li>
                 <li><a href="/business_cards">View Business Contacts</a></li>
             </ul>
-              <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/create_users/new">Signup</a></li>
-                  <li><a href="/sessions/new">Login</a></li>
-                </ul>
-              </li>
-            </ul>
 
-          <ul class="nav navbar-nav pull-right">
             <li class=" dropdown"><a href="" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
-            <strong>Signed in as:</strong> 
+            Signed in as 
             <% if current_user %> 
             <%= current_user.name.capitalize  %> 
             <% end %>
@@ -59,45 +50,41 @@
 <% end %>
 
 <p id="notice"><%= notice %></p>  
-  <div style="border-radius: 5px; padding-left: 150px; padding-right: 150px;">
-    <h3>Business Cards</h3>
+  <div style="border-radius: 5px; padding-left: 150px; padding-right: 150px; color:#666699">
+    <h2>Business Cards</h2>
     <br>
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Company</th>
-            <th>Title</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Action</th>
+          <th><u><b>Contact  ____________________________________________</u></b></th>
+            <th><u>Contact Information ___________________________________________</u></th>
+            <th data-field="edit" data-align="right"><u>Edit/Delete</u></th>
           </tr>
         </thead>
-      </table>
     <tbody>
       <% if @business_cards.length > 0 %> 
       <% @business_cards.each do |business_card| %>
-        <tr>
           <td><%= image_tag(business_card.image) %></td>
-          <td><%= business_card.name %></td>
-          <td><%= business_card.company %></td>
-          <td><%= business_card.job_title %></td>
-          <td><%= business_card.phone %></td>
-          <td><%= business_card.email %></td>
-          <td><%= business_card.company_address %></td> 
+          <td><b>Full Name: </b><%= business_card.name %><br>
+            <b>Company Name: </b><%= business_card.company %><br>
+            <b>Job Title: </b><%= business_card.job_title %><br>
+            <b>Contact Phone: </b><a style="color:#666699" href="tel:+1<%= business_card.phone %>"><%= business_card.phone %></a><br>
+            <b>Email: </b><a style="color:#666699"  href="mailto:<%= business_card.email %>"><%= business_card.email %></a><br>
+            <b>Address(map): </b><%= business_card.company_address %><br> 
+          </td>
           <td>
           <ol><%= link_to 'Edit', edit_business_card_path(business_card) %></ol>
           <ol><%= link_to 'Destroy', business_card, method: :delete, data: { confirm: 'Are you sure?' } %></ol>   
+          </td>
+      
         </tr>
+    </tbody>
         <% end %>
         <% else %>
         <td colspan="9">NO Business Cards</td>
         <% end %>
-    </tbody>
   </table>
-  <%= button_to 'Add New Businesscard', new_business_card_path, :method => :get %>
+      <%= button_to 'Add a New Businesscard', new_business_card_path, id: 'button', class: "btn btn-info btn-lg", :method => :get %>
 </div>
 
 <div class="navbar-footer">
