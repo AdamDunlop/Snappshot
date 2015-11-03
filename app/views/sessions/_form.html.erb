@@ -1,19 +1,17 @@
 <div class="row", style="color:#8585AD">
- <hr>
-  <div class="col-lg-6 col-md-offset-2">
-  <br>
+ <hr style="width:95%">
+  <div class="col-lg-6 col-md-offset-1">
      <h2 class="modal-title"><b>Sign In</b></h2>
      <hr>
     <%= form_tag sessions_path do %> 
       <%=label_tag "email" %><br>
-      <%=text_field_tag "email", 'adam@mail.com', autofocus: true %><br>
+      <%=text_field_tag "email", 'adam@mail.com', autofocus: true, style: "width: 400px"  %><br>
       <br>
       <%=label_tag "password" %><br>
-      <%=password_field_tag "password" %><br>
+      <%=password_field_tag "password", "", style: "width: 400px"  %><br>
       <br>
       <b><%=button_tag "Login" %></b>
     <% end %>
-    <br>
     <br>
     <br>
   </div>

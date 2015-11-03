@@ -29,7 +29,7 @@ class CreateUsersController < ApplicationController
     respond_to do |format|
       if @create_user.save
         session[:create_user_id] = @create_user.id
-        format.html { redirect_to business_cards_path, notice: 'Create user was successfully created.' }
+        format.html { redirect_to business_cards_path }
         format.json { render :show, status: :created, location: @create_user }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class CreateUsersController < ApplicationController
   def update
     respond_to do |format|
       if @create_user.update(create_user_params)
-        format.html { redirect_to @create_user, notice: 'Create user was successfully updated.' }
+        format.html { redirect_to @create_user }
         format.json { render :show, status: :ok, location: @create_user }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class CreateUsersController < ApplicationController
   def destroy
     @create_user.destroy
     respond_to do |format|
-      format.html { redirect_to create_users_url, notice: 'Create user was successfully destroyed.' }
+      format.html { redirect_to create_users_url }
       format.json { head :no_content }
     end
   end
