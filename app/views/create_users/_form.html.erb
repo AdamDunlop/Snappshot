@@ -1,33 +1,30 @@
 <hr>
 <div class="row", style="color:#8585AD; padding-left:100px">
-  <div class="col-md-6 col-md-offset-0">
-     <h2 class="modal-title"><b>Sign Up</b></h2>
-          <hr>  
-      <%= form_for(@create_user) do |f| %>
-        
-        <%= f.label :name %>
-        <br>
-        <%= f.text_field :name, style: "width: 400px"  %>
-        <br>
-        <%= f.label :email %>
-        <br>
-        <%= f.text_field :email, style: "width: 400px"  %>
-        <br>
-        <%= f.label :password %>
-        <br>
-        <%= f.password_field :password, style: "width: 400px"  %>
-        <br>   
-        <%= f.label :confirmation %>
-        <br>
-        <%= f.password_field :password_confirmation, style: "width: 400px"  %>
-        <br>
-        <br>
-        <%= f.submit :submit %>
-        <br>
-        <br>
-      <% end %>
-
-  </div>
+ <h2 class="modal-title"><b>Sign Up</b></h2>
+      <hr>  
+  <%= form_for(@create_user) do |f| %>
+    
+    <%= f.label :name %>
+    <br>
+    <%= f.text_field :name, style: "width: 400px"  %>
+    <br>
+    <%= f.label :email %>
+    <br>
+    <%= f.text_field :email, style: "width: 400px"  %>
+    <br>
+    <%= f.label :password %>
+    <br>
+    <%= f.password_field :password, style: "width: 400px"  %>
+    <br>   
+    <%= f.label :confirmation %>
+    <br>
+    <%= f.password_field :password_confirmation, style: "width: 400px"  %>
+    <br>
+    <br>
+    <%= f.submit :submit, class: "btn btn-info"  %>
+    <br>
+    <br>
+  <% end %>
 </div>
 <div class="modal-footer">
  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

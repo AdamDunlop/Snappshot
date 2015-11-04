@@ -1,5 +1,4 @@
 <div class="navbar-wrapper">
-
   <div class="container-fluid">
     <nav class="navbar navbar-default">
       <div class="container">
@@ -21,7 +20,6 @@
                 <li><a href="/business_cards/new">Add New Business Card</a></li>
                 <li><a href="/business_cards">View Business Contacts</a></li>
             </ul>
-
             <li class=" dropdown"><a href="" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
             Signed in as 
             <% if current_user %> 
@@ -49,6 +47,8 @@
   </div>
 <% end %>
 
+<!-- end of nav bar -->
+
 <p id="notice"><%= notice %></p>  
   <div style="border-radius: 5px; padding-left: 150px; padding-right: 150px; color:#666699">
     <h2>Business Cards</h2>
@@ -56,25 +56,35 @@
       <table class="table table-striped">
         <thead>
           <tr>
-          <th><u><b>Contact  ____________________________________________</u></b></th>
-            <th><u>Contact Information ___________________________________________</u></th>
-            <th data-field="edit" data-align="right"><u>Edit/Delete</u></th>
+          <th><u><b>Contact  </u></b></th>
+            <th><u>Contact Information </u></th>
+            <th><u>Map</u></th>
+            <th style="float:right"><u>Edit/ Delete/ Save</u></th>
           </tr>
         </thead>
     <tbody>
       <% if @business_cards.length > 0 %> 
       <% @business_cards.each do |business_card| %>
           <td><%= image_tag(business_card.image) %></td>
-          <td><b>Full Name: </b><%= business_card.name %><br>
+          <td><div><b>Full Name: </b><%= business_card.name %></div>
             <b>Company Name: </b><%= business_card.company %><br>
             <b>Job Title: </b><%= business_card.job_title %><br>
             <b>Contact Phone: </b><a style="color:#666699" href="tel:+1<%= business_card.phone %>"><%= business_card.phone %></a><br>
             <b>Email: </b><a style="color:#666699"  href="mailto:<%= business_card.email %>"><%= business_card.email %></a><br>
-            <b>Address(map): </b><%= business_card.company_address %><br> 
-          </td>
+            <b>Website: </b><a style="color:#666699" href="https:<%= business_card.company_website %>"><%= business_card.company_website %></a><br> 
+            <b>Address: </b><%= business_card.company_address %><br> 
+            </td>
+            <td>
+            <div style='width: 300px;'>
+              <div id="map" style='width: 380px; height: 250px;'></div> <!-- map -->
+            </div>           
+            </td>
           <td>
-          <ol><%= link_to 'Edit', edit_business_card_path(business_card) %></ol>
-          <ol><%= link_to 'Destroy', business_card, method: :delete, data: { confirm: 'Are you sure?' } %></ol>   
+          <ol>
+          <br><br><br>
+          <%= button_to 'Edit', edit_business_card_path(business_card), method: :get, class: 'btn btn-info btn-block' %></ol>
+          <ol><%= button_to 'Delete', business_card, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %></ol>   
+          <ol><%= button_to 'Save', business_card, method: :something, data: {confirm: 'Save Contact?'}, class: 'btn btn-success btn-block' %> </ol> 
           </td>
       
         </tr>
@@ -84,15 +94,37 @@
         <td colspan="9">NO Business Cards</td>
         <% end %>
   </table>
-      <%= button_to 'Add a New Businesscard', new_business_card_path, id: 'button', class: "btn btn-info btn-lg", :method => :get %>
+  <%= button_to 'Add a New Businesscard', new_business_card_path, id: 'button', class: "btn btn-info btn-lg", :method => :get %>
 </div>
+ 
+<script type="text/javascript">
 
-<div class="navbar-footer">
-  <div class="row">
-    <ul class="nav navbar-nav">
+function initMap() {
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 49.281887, lng: -123.108188},
+    scrollwheel: false,
+    zoom: 14
+  });
+
+  var myLatLng = {lat: 49.281887, lng: -123.108188};
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+    });
+  }
+
+</script> 
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPBuDZ6oTJOIaUaqyxqm8Deb1BhYJ6jiQ&callback=initMap">
+</script>
+
+  <div class="navbar-footer">
+    <div class="row">
+      <ul class="nav navbar-nav">
 
       </ul>
+    </div>
   </div>
 </div>
-
-

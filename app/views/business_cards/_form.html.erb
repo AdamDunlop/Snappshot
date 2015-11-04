@@ -49,24 +49,29 @@
     <button id="rotateLeft" class="btn btn-info btn-lrg"><span class="glyphicon glyphicon-chevron-left">90°</span></button>
   </div>
   <div class="col-md-4" style="padding-left:120px; padding-right:50px">
-    <label>Scale:</label><input type="range" id="scale-image" value="100" min="0" max="255"></span> <!--scale image -->
    </div>
   <div class="col-md-4" style="padding-left:200px">
     <button id="rotateRight" class="btn btn-info btn-lrg">90°<span class="glyphicon glyphicon-chevron-right"></span></button>
   </div>
 </div>
-  <label><span>Grayscale: <input type="checkbox" id="grayscale" ></label>
-  <br>
-    <label><span>Sharpen:</span> <input type="checkbox" id="sharpen"></label>
-    
+<br>  
+  <div class="row">
+    <div class="col-md-2">
+    <label class="glyphicon glyphicon-resize-horizontal">Scale:</label>
     <br>
-
-    <label><span>Brightness:</span> <input type="checkbox" id="brightness" ></label>  
-    <div class="row">
-    <div class="col-md-2" style="centered">
-    <input type="range" id="brightness-value" value="100" min="0" max="255">
+    <input type="range" id="scale-image" value="100" min="-100" max="255"></span> <!--scale image -->
     </div>
   </div>
+  <label><span>Grayscale: <input type="checkbox" id="grayscale" ></label>
+  <br>
+  <label><span>Sharpen:</span> <input type="checkbox" id="sharpen"></label>
+  <br>
+  <label><span>Brightness:</span> <input type="checkbox" id="brightness" ></label>  
+  <div class="row">
+  <div class="col-md-2" style="centered">
+  <input type="range" id="brightness-value" value="100" min="-100" max="255">
+  </div>
+</div>
 
  <script type="text/javascript">
 

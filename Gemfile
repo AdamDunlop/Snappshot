@@ -33,9 +33,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -44,8 +41,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Carrierwave to upload images to app
 # mini-magick => image editor
-# bootsy => image editor via bootstrap3
 # gem "paperclip", "~> 4.3"
+
+gem 'gmaps4rails'
 
 gem 'carrierwave'
 
@@ -54,8 +52,6 @@ gem 'carrierwave-base64'
 gem 'rmagick'
 
 gem 'mini_magick', '~> 4.3.3'
-
-# gem 'bootsy', '~> 2.1.0'
 
 gem 'jquery-fileupload-rails'
 

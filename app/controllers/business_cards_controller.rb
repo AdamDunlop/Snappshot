@@ -109,7 +109,7 @@ class BusinessCardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_card_params
-      params.require(:business_card).permit(:name, :company, :job_title, :phone, :email, :company_address, :image, :ocr_text, :create_user_id, :imageuri)
+      params.require(:business_card).permit(:name, :company, :job_title, :phone, :email, :company_address, :image, :ocr_text, :create_user_id, :imageuri, :company_website)
     end
 
 
