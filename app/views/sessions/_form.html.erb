@@ -2,13 +2,17 @@
  <hr style="width:95%">
   <div class="col-lg-6 col-md-offset-1">
      <h2 class="modal-title"><b>Sign In</b></h2>
-     <hr>
+     <br>
     <%= form_tag sessions_path do %> 
+
+      <%=label_tag "phone" %><br>
+      <%=text_field_tag "phone_number", '7789895565', autofocus: true, style: "width: 400px" %><br> 
+      <br>
       <%=label_tag "email" %><br>
-      <%=text_field_tag "email", 'adam@mail.com', autofocus: true, style: "width: 400px"  %><br>
+      <%=text_field_tag "email", 'adam@mail.com', style: "width: 400px"  %><br>
       <br>
       <%=label_tag "password" %><br>
-      <%=password_field_tag "password", "", style: "width: 400px"  %><br>
+      <%=password_field_tag "password", '123456', style: "width: 400px"  %><br>
       <br>
       <b><%=button_tag "Login", class: "btn btn-info"  %></b>
     <% end %>

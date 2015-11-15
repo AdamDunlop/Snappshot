@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def current_user
-    # byebug
     @current_user ||= CreateUser.find(session[:create_user_id]) if session[:create_user_id]
   end
 

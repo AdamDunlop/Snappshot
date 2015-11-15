@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'bcrypt-ruby', '3.1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.5'
 #gem 'rails-footnotes', '~> 4.1.7'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -35,8 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'geocoder'
 
-gem 'spellingbee', '~> 0.0.2'
-
+gem 'leaflet-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -47,8 +46,6 @@ gem 'spellingbee', '~> 0.0.2'
 # mini-magick => image editor
 # gem "paperclip", "~> 4.3"
 
-gem 'gmaps4rails'
-
 gem 'carrierwave'
 
 gem 'carrierwave-base64'
@@ -57,7 +54,7 @@ gem 'rmagick'
 
 gem 'mini_magick', '~> 4.3.3'
 
-gem 'jquery-fileupload-rails'
+# gem 'jquery-fileupload-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

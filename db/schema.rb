@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103195649) do
+ActiveRecord::Schema.define(version: 20151115133110) do
 
   create_table "business_cards", force: :cascade do |t|
     t.string   "name"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20151103195649) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "phone_number"
   end
 
 # Could not dump table "users" because of following NoMethodError
