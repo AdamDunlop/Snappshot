@@ -50,7 +50,7 @@
 <!-- end of nav bar -->
 
 <p id="notice"><%= notice %></p>  
-  <div style="border-radius: 5px; padding-left: 150px; padding-right: 150px; color:#666699">
+  <div style="border-radius: 5px; padding-left: 40px; padding-right: 150px; color:#666699">
     <h2>Business Cards</h2>
     <br>
       <table class="table table-striped">
@@ -69,14 +69,14 @@
           <td><div><b>Full Name: </b><%= business_card.name %></div>
             <b>Company Name: </b><%= business_card.company %><br>
             <b>Job Title: </b><%= business_card.job_title %><br>
-            <b>Contact Phone: </b><a style="color:#666699" href="tel:+1<%= business_card.phone %>"><%= business_card.phone %></a><br>
+            <b>Phone: </b><a style="color:#666699" href="tel:+1<%= business_card.phone %>"><%= business_card.phone %></a><br>
             <b>Email: </b><a style="color:#666699"  href="mailto:<%= business_card.email %>"><%= business_card.email %></a><br>
             <b>Website: </b><a style="color:#666699" href="https:<%= business_card.company_website %>"><%= business_card.company_website %></a><br> 
             <b>Address: </b><%= business_card.company_address %><br> 
             </td>
             <td>
             <div style='width: 300px;'>
-              <div id="map" style='width: 380px; height: 250px;'></div> <!-- map -->
+              <div id="map" style='width: 320px; height: 210px;'></div> <!-- map -->
             </div>           
             </td>
           <td>
@@ -128,3 +128,7 @@ function initMap() {
     </div>
   </div>
 </div>
+<br>
+<br>
+<br>
+<br>

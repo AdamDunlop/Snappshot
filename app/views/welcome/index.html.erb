@@ -57,12 +57,13 @@
 <!--  -->
 <div style="padding-left:300px; color:#666699">
 
-   <h4><% if current_user -%>Welcome, <%= current_user.name.capitalize %></h4>
-   <br>
-   <% end -%>
-      <%= button_to 'Add a New Businesscard', new_business_card_path, id: 'button', class: "btn btn-info btn-lg", :method => :get %>
-      <br>
-      <br>
+  <h4><% if current_user -%>Welcome, <%= current_user.name.capitalize %></h4>
+  <% end -%>
+  <div style="padding-left:1000px">
+    <%= button_to 'View all Businesscard', business_cards_path, id: 'button', class: "btn btn-info btn-lg", :method => :get %> </span> 
+  </div>
+  <br>
+  <br>
 </div>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -73,6 +74,10 @@
     <li data-target="#myCarousel" data-slide-to="3"></li>
   </ol>
 
+   <div style='padding-left:410px'>
+      <%= button_to 'Add a New Businesscard', new_business_card_path, id: 'button', class: "btn btn-info btn-lg", :method => :get %>  
+      <br>
+      </div>
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
@@ -90,7 +95,7 @@
 
     <div class="item">
       <center><%= image_tag('image6.jpg', :size => '1100x550')%> </center>
-    </div>  
+    </div>
     </div>
 
   <!-- Left and right controls -->
@@ -102,12 +107,15 @@
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-
+  <br>
+  <div style='padding-left:410px'>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" href="/sessions/new">Sign In</button>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2" href="/create_users/new">Sign up</button>
+  </div>
 </div>
    <br>
    <br>
 <div style="padding-left:300px">
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" href="/sessions/new">Sign In</button>
 
   <!-- Modal -->
   <div id="myModal" class="modal fade" role="dialog">
@@ -124,7 +132,6 @@
   </div>
 
 
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2" href="/create_users/new">Sign up</button>
 
   <!-- Modal -->
   <div id="myModal2" class="modal fade" role="dialog">

@@ -33,6 +33,10 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'geocoder'
+
+gem 'spellingbee', '~> 0.0.2'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

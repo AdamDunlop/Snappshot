@@ -70,7 +70,9 @@
     </div>
     <div class="col-sm-4">
       <%= f.text_area :ocr_text, size: "6x13", class: 'form-control', autofocus: true %> 
-    </div> 
+ <!--      <#% s = SpeelingBeenew :ocr_text %>
+      <#% s.correct %> -->
+          </div> 
 
     <div class="col-md-5">
       <%= f.text_field :name, class: 'form-control', placeholder: 'Full Name'  %>
@@ -100,12 +102,12 @@
     <br>
     <br>
     <div class="col-md-5">
-    <%= f.text_field :company_address, class: 'form-control', placeholder: 'Company Address' %>
+    <%= f.text_field :company_address, class: 'form-control', placeholder: 'Address' %>
     </div><div class="glyphicon glyphicon-circle-arrow-left" style="color: #D1D1E0"> Address</div>
     <br>
     <br>
     <div class="col-md-5">
-    <%= f.text_field :company_website, class: 'form-control', placeholder: 'Company Website' %>
+    <%= f.text_field :company_website, class: 'form-control', placeholder: 'Website' %>
     </div><div class="glyphicon glyphicon-circle-arrow-left" style="color: #D1D1E0"> Website</div>
     <br>
     <div class="col-md-8">
@@ -118,11 +120,10 @@
       <br>
       <br>
         <%= button_to 'Discard', @business_card, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-      </div>
-      </div>
-        <div style= "padding-left:490px">
-        <br>
+        <div style= "padding-left:15px">
         <%= button_to 'Go Back', business_cards_path, class: 'btn btn-info' %>
+      </div>
+      </div>
       </div>
     </div>
   </div>
