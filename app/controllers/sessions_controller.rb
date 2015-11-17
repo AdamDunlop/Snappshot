@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
 
   def create
     create_user = CreateUser.find_by(email: params[:email])
+    # create_user = User.from_omniauth(env["omniauth.auth"])
+
     if create_user && create_user.authenticate(params[:password]) 
       session[:create_user_id] = create_user.id
       redirect_to business_cards_path

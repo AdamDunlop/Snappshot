@@ -1,5 +1,21 @@
 <div class="navbar-wrapper">
+  <script src="http://maps.google.com/maps/api/js"></script>
+<script type="text/javascript">
 
+function initMap(id, lat, lng) {
+  var map = new google.maps.Map(document.getElementById(id), {
+    center: {lat: lat, lng: lng},
+    zoom: 8
+  });
+
+  var myLatLng = {lat: lat, lng: lng};
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    });
+}
+
+</script> 
   <div class="container-fluid">
     <nav class="navbar navbar-default">
       <div class="container">
@@ -67,7 +83,7 @@
         </thead>
     <tbody>
       <% if @business_cards.length > 0 %> 
-      <% @business_cards.each do |business_card| %>
+      <% @business_cards.each_with_index do |business_card, index| %>
           <td><%= image_tag(business_card.image) %></td>
           <td><div><b>Full Name: </b><%= business_card.name %></div>
             <b>Company Name: </b><%= business_card.company %><br>
@@ -79,8 +95,14 @@
             </td>
             <td>
             <div style='width: 300px;'>
-<!--               <div id="contacts" style='width: 320px; height: 210px; border: 1px solid #AAA;'></div> <!-- map -->
-             </div>           
+              <div id="map<%= index %>" style='width: 320px; height: 210px; border: 1px solid #AAA;'>
+              </div> <!-- map -->
+              <script>
+                initMap('map' + '<%= index %>', 49.25, -123.1)
+                console.log('map' + '<%= index %>')
+
+              </script>
+            </div>           
             </td>
           <td>
           <ol>
@@ -99,24 +121,6 @@
   </table>
   <%= button_to 'Add a New Businesscard', new_business_card_path, id: 'button', class: "btn btn-info btn-lg", :method => :get %>
 </div>
- 
-<script src="http://maps.google.com/maps/api/js", type="text/javascript">
-
-function initMap() {
-
-  var map = new google.maps.Map(document.getElementById('contacts'), {
-    center: {lat: 49.281887, lng: -123.108188},
-    zoom: 14
-  });
-
-  var myLatLng = {lat: 49.281887, lng: -123.108188};
-  var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    });
-  }
-
-</script> 
 
   <div class="navbar-footer">
     <div class="row">

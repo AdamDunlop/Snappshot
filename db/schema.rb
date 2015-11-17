@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115133110) do
+ActiveRecord::Schema.define(version: 20151116182148) do
 
   create_table "business_cards", force: :cascade do |t|
     t.string   "name"
@@ -33,9 +33,12 @@ ActiveRecord::Schema.define(version: 20151115133110) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "phone_number"
+    t.string   "aouth_token"
+    t.datetime "oauth_expires_at"
+    t.string   "provider"
   end
 
 # Could not dump table "users" because of following NoMethodError

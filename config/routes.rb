@@ -1,5 +1,5 @@
-  Rails.application.routes.draw do
-  
+Rails.application.routes.draw do
+
   get 'welcome/index'
 
   post 'business_cards/upload', to: 'business_cards#upload'

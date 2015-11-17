@@ -93,6 +93,16 @@
   var canvas = new fabric.Canvas('c', { backgroundColor: '#f5f5f5' });
   var imageInitialImageData = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height); 
 
+  var grid = 50;
+
+  // create grid
+
+  for (var i = 0; i < (800 / grid); i++) {
+    canvas.add(new fabric.Line([ i * grid, 0, i * grid, 800], { stroke: '#ccc', selectable: false }));
+    canvas.add(new fabric.Line([ 0, i * grid, 800, i * grid], { stroke: '#ccc', selectable: false }))
+  }
+
+
   fabric.Image.filters.Threshold = fabric.util.createClass({
     type: 'threshold',
     threshold: parseInt($('#threshold-value').val(), 10),
@@ -182,7 +192,9 @@
       angle += -90;
       obj.set({
         angle: angle 
-      })
+      })  
+    // obj.animate('angle', '-90', { onChange: canvas.renderAll.bind(canvas) });
+
     canvas.add(obj);
   })
 
@@ -385,18 +397,15 @@
     return imageData;
   }
 
+  canvas.on('object:moving', function(options) { 
+    options.target.set({
+      left: Math.round(options.target.left / grid) * grid, //snap to grid function
+      top: Math.round(options.target.top / grid) * grid
+    });
+  });
 
-  </script>
+</script>
 
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-</div> 
-
+  </div> 
 </div>
 
