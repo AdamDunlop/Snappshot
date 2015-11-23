@@ -50,7 +50,7 @@ gem 'carrierwave'
 
 gem 'carrierwave-base64'
 
-gem 'rmagick'
+# gem 'rmagick'
 
 gem 'mini_magick', '~> 4.3.3'
 

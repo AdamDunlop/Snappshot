@@ -1,6 +1,5 @@
 require 'tesseract'
 require 'base64'
-require 'rmagick'
 
 
 class BusinessCardsController < ApplicationController
