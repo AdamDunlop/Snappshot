@@ -98,7 +98,7 @@ function initMap(id, lat, lng) {
               <div id="map<%= index %>" style='width: 320px; height: 210px; border: 1px solid #AAA;'>
               </div> <!-- map -->
               <script>
-                initMap('map' + '<%= index %>', 49.25, -123.1)
+                initMap('map' + '<%= index %>', <%= business_card.latitude %>, <%=business_card.longitude %>)
                 console.log('map' + '<%= index %>')
 
               </script>

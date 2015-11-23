@@ -50,8 +50,6 @@ gem 'carrierwave'
 
 gem 'carrierwave-base64'
 
-# gem 'rmagick'
-
 gem 'mini_magick', '~> 4.3.3'
 
 # gem 'jquery-fileupload-rails'

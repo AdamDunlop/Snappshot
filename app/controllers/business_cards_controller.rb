@@ -1,5 +1,6 @@
 require 'tesseract'
 require 'base64'
+require 'geocoder'
 
 
 class BusinessCardsController < ApplicationController
