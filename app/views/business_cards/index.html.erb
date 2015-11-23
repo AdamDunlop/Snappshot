@@ -5,14 +5,21 @@
 function initMap(id, lat, lng) {
   var map = new google.maps.Map(document.getElementById(id), {
     center: {lat: lat, lng: lng},
-    zoom: 8
+    zoom: 14
   });
+
 
   var myLatLng = {lat: lat, lng: lng};
   var marker = new google.maps.Marker({
     position: myLatLng,
     map: map,
     });
+  var transitLayer = new google.maps.TransitLayer();
+  transitLayer.setMap(map);
+
+   var trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map);
+
 }
 
 </script> 
@@ -77,7 +84,7 @@ function initMap(id, lat, lng) {
           <tr>
           <th><u><b>Contact  </u></b></th>
             <th><u>Contact Information </u></th>
-            <th><u>Map</u></th>
+            <th style="padding-right:150px"><u>Map</u></th>
             <th style="float:right"><u>Edit/ Delete/ Save</u></th>
           </tr>
         </thead>
@@ -95,11 +102,10 @@ function initMap(id, lat, lng) {
             </td>
             <td>
             <div style='width: 300px;'>
-              <div id="map<%= index %>" style='width: 320px; height: 210px; border: 1px solid #AAA;'>
+              <div id="map<%= index %>" style='width: 420px; height: 250px; border: 1px solid #AAA;'>
               </div> <!-- map -->
               <script>
                 initMap('map' + '<%= index %>', <%= business_card.latitude %>, <%=business_card.longitude %>)
-                console.log('map' + '<%= index %>')
 
               </script>
             </div>           

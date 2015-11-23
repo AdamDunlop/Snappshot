@@ -69,11 +69,11 @@ var map = L.map('map').setView([49.2827, -123.1207], 13);
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
 
-
-<% @business_cards.each_with_index do |business_card, i| %>
+// <%  if current_user %>
+  <% @business_cards.each_with_index do |business_card, i| %>
 L.marker([<%=business_card.latitude%>, <%=business_card.longitude%>]).addTo(map);
-
-<% end %>
+  <% end %>
+// <% end %>
    
   
 
