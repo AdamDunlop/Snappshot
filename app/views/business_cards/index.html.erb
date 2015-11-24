@@ -84,6 +84,7 @@ function initMap(id, lat, lng) {
           <tr>
           <th><u><b>Contact  </u></b></th>
             <th><u>Contact Information </u></th>
+            <th><u>Social Media</u></th>
             <th style="padding-right:150px"><u>Map</u></th>
             <th style="float:right"><u>Edit/ Delete/ Save</u></th>
           </tr>
@@ -92,16 +93,26 @@ function initMap(id, lat, lng) {
       <% if @business_cards.length > 0 %> 
       <% @business_cards.each_with_index do |business_card, index| %>
           <td><%= image_tag(business_card.image) %></td>
-          <td><div><b>Full Name: </b><%= business_card.name %></div>
-            <b>Company Name: </b><%= business_card.company %><br>
+          <td>
+          <div style="width:200px"><b>Full Name: </b><%= business_card.name %></div>
+            <b>Company Name: </b><a href="https://www.google.ca/?gws_rd=ssl#q=<%=business_card.company%>"><%= business_card.company %></a><br>
             <b>Job Title: </b><%= business_card.job_title %><br>
-            <b>Phone: </b><a style="color:#666699" href="tel:+1<%= business_card.phone %>"><%= business_card.phone %></a><br>
-            <b>Email: </b><a style="color:#666699"  href="mailto:<%= business_card.email %>"><%= business_card.email %></a><br>
-            <b>Website: </b><a style="color:#666699" href="https:<%= business_card.company_website %>"><%= business_card.company_website %></a><br> 
-            <b>Address: </b><%= business_card.company_address %><br> 
+            <b>Mobile: </b><a style="color:#666699" href="tel:+1<%= business_card.phone %>"><%= business_card.phone %></a><br>
+            <b>Work: </b><a style="color:#666699" href="tel:+1<%= business_card.work_number %>"><%= business_card.work_number %></a><br>
+            <b>Fax: </b><a style="color:#666699" href="tel:+1<%= business_card.fax_number %>"><%= business_card.fax_number %></a><br>
+            <b>Email: </leb><a style="color:#666699"  href="mailto:<%= business_card.email %>"><%= business_card.email %></a><br>
+            <b>Website: </b><a style="color:#666699" href="https:<%= business_card.company_website %>"><%= business_card.company_website %></a style="color:#66699"><br> 
+            <b>Address: </b><a href="http://maps.google.com/maps?saddr=Current%20Location&daddr=<%=business_card.latitude%>, <%=business_card.longitude%>"><%= business_card.company_address %></a><br> 
+           <ol>
+           </td>
+           <td>
+           <%= link_to "#{image_tag("LinkedIn.png")}".html_safe, "https://www.google.ca/?gws_rd=ssl#q=linkedin+#{business_card.name}" %><br>
+           <%= link_to "#{image_tag("Twitter.png")}".html_safe, "https://www.google.ca/?gws_rd=ssl#q=twitter+#{business_card.name}" %><br>
+            <%= link_to "#{image_tag("Facebook.png")}".html_safe, "https://www.google.ca/?gws_rd=ssl#q=facebook+#{business_card.name}" %>
+          </ol>
             </td>
             <td>
-            <div style='width: 300px;'>
+            <div style='width: 400px;'>
               <div id="map<%= index %>" style='width: 420px; height: 250px; border: 1px solid #AAA;'>
               </div> <!-- map -->
               <script>
@@ -110,6 +121,7 @@ function initMap(id, lat, lng) {
               </script>
             </div>           
             </td>
+
           <td>
           <ol>
           <br><br><br>

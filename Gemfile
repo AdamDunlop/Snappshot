@@ -23,7 +23,8 @@ gem 'bootstrap-sass', '~> 3.2.0'
 
 gem 'tesseract-ocr', '~> 0.1.8' 
 
-# gem 'omniauth-google-oauth2', '~> 0.2.9'
+gem 'google-api-client', '0.9.pre3'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
