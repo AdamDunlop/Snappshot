@@ -1,56 +1,3 @@
-<div class="navbar-wrapper">
-  <div class="container-fluid">
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-          <a class="navbar-brand">Snappshot</a>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">          
-            <li class=""><%= link_to("Home", root_path) %>
-            </li>
-            <li class=" dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Business Cards <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/business_cards/new">Add New Business Card</a></li>
-              <li><a href="/business_cards">View Business Contacts</a></li>
-            </ul>
-            </li>
-            <ul class="nav navbar-nav pull-right">
-              <li class=" dropdown">
-                <a href="" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Signed in as <% if current_user %> 
-                <%= current_user.name.capitalize  %> 
-                <% end %>
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <% if current_user %> 
-                    <li><a href="/profile">My Profile</a></li>
-                    <li><a href="#">Change Password</a></li>
-                    <% end %>
-                </ul>
-                </li>
-            <li class=""><%= link_to("Logout", sessions_path("current"), method: :delete) %></li>
-            </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
-</div>
-<% if flash[:message] %>
-  <div class="login-error">
-  <%= flash[:message] %>
-  </div>
-<% end %>
-
-<!-- end of nav bar -->
-
 <p id="notice"><%= notice %></p>
 <% if current_user %>
 <div class="container"; style="width:1000px">
@@ -66,7 +13,7 @@
     <br>    
     </div>
     <div class="col-sm-4">
-      <%= f.text_area :ocr_text, size: "6x13", class: 'form-control', autofocus: true %> 
+      <%= f.text_area :ocr_text, size: "6x17", class: 'form-control', autofocus: true %> 
  <!--      <#% s = SpeelingBeenew :ocr_text %>
       <#% s.correct %> -->
           </div> 
@@ -88,13 +35,23 @@
     </div><div class="glyphicon glyphicon-circle-arrow-left" style="color: #D1D1E0"> Job Title</div>
     <br>
     <br>
-    <div class="col-md-5">
-      <%= f.text_field :phone, class: 'form-control', placeholder: 'Phone Number' %>
-    </div><div class="glyphicon glyphicon-circle-arrow-left" style="color: #D1D1E0"> Phone</div>
+   <div class="col-md-5">
+      <%= f.text_field :phone, class: 'form-control', placeholder: 'Mobile' %>
+    </div><div class="glyphicon glyphicon-circle-arrow-left" style="color: #D1D1E0"> Mobile</div>
     <br>
     <br>
     <div class="col-md-5">
-      <%= f.text_field :email, class: 'form-control', placeholder: 'Work Email' %>
+      <%= f.text_field :work_number, class: 'form-control', placeholder: 'Work' %>
+    </div><div class="glyphicon glyphicon-circle-arrow-left" style="color: #D1D1E0"> Work</div>
+    <br>
+    <br>
+    <div class="col-md-5">
+      <%= f.text_field :fax_number, class: 'form-control', placeholder: 'Fax' %>
+    </div><div class="glyphicon glyphicon-circle-arrow-left" style="color: #D1D1E0"> Fax</div>
+    <br>
+    <br>
+    <div class="col-md-5">
+      <%= f.text_field :email, class: 'form-control', placeholder: 'Email' %>
     </div><div class="glyphicon glyphicon-circle-arrow-left" style="color: #D1D1E0"> Email</div>
     <br>
     <br>
