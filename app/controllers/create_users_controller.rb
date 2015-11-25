@@ -70,6 +70,6 @@ class CreateUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def create_user_params
-      params.require(:create_user).permit(:name, :email, :password, :password_confirmation, :phone_number)
+      params.require(:create_user).permit(:name, :phone_number, :email, :password, :password_confirmation)
     end
 end

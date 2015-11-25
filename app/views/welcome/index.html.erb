@@ -1,6 +1,6 @@
 <div style='float:right; width: auto; padding-right:403px; color:#666699'>
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" href="/sessions/new">Sign In</button>
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2" href="/create_users/new">Sign up</button>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Sign In</button>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Sign up</button>
 </div>
 
   <span style="padding-left: 200px; color:#666699"><% if current_user %>Welcome, <b><%= current_user.name.capitalize %></b></span>
@@ -22,11 +22,8 @@ L.marker([<%=business_card.latitude%>, <%=business_card.longitude%>]).addTo(map)
   <% end %>
 // <% end %>
    
-  
-
 </script>
-
-  <br>
+<br>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -69,31 +66,65 @@ L.marker([<%=business_card.latitude%>, <%=business_card.longitude%>]).addTo(map)
   </a>
   <br>
 </div>
-<br>
-<br>
+<br><br>
 <div style="padding-left:300px">
-
-  <!-- Modal -->
+  <!--signin Modal -->
   <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-md">
-
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
+          <div class="row", style="color:#8585AD">
+           <hr style="width:95%">
+            <div class="col-lg-6 col-md-offset-1">
+              <h2 class="modal-title"><b>Sign In</b></h2>
+              <br>
+              <%= form_tag sessions_path do %> 
+                <%=label_tag "phone" %><br>
+                <%=text_field_tag "phone_number", '7789895565', autofocus: true, style: "width: 400px" %><br> 
+                <br>
+                <%=label_tag "email" %><br>
+                <%=text_field_tag "email", 'adamd@mail.com', style: "width: 400px"  %><br>
+                <br>
+                <%=label_tag "password" %><br>
+                <%=password_field_tag "password", '123456', style: "width: 400px"  %><br>
+                <br>
+                <b><%=button_tag "Login", class: "btn btn-info"  %></b>
+              <% end %>
+              <br>
+            </div>
+          </div>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <br>           
       </div>
     </div>
   </div>
-
-  <!-- Modal -->
+<div style="padding-left:300px">
+  <!-- signup Modal -->
   <div id="myModal2" class="modal fade" role="dialog">
     <div class="modal-dialog modal-md">
-
     <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
+        <hr style="width:99%">
+          <div class="row", style="color:#8585AD; padding-left:60px; width: auto">
+           <h2 class="modal-title"><b>Sign Up</b></h2>
+                <br>  
+            <%= form_tag create_users_path do %>
+              <%= label_tag :name %><br>
+              <%= text_field_tag "create_user[name]", "", style: "width: 400px"  %><br><br>
+              <%= label_tag :phone_number %><br>
+              <%= telephone_field_tag "create_user[phone_number]", "", style: "width: 400px" %><br><br>
+              <%= label_tag :email %><br>
+              <%= text_field_tag "create_user[email]", "", style: "width: 400px"  %><br><br>
+              <%= label_tag :password %><br>
+              <%= password_field_tag "create_user[password]", "", style: "width: 400px"  %><br><br>   
+              <%= label_tag :confirmation %><br>
+              <%= password_field_tag "create_user[password_confirmation]", "", style: "width: 400px"  %><br><br>
+              <%= button_tag "Sign up", class: "btn btn-info"  %><br><br>
+            <% end %>
+          </div>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
       <br>
