@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123234950) do
+ActiveRecord::Schema.define(version: 20151125174929) do
 
   create_table "business_cards", force: :cascade do |t|
     t.string   "name"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 20151123234950) do
     t.datetime "oauth_expires_at"
     t.string   "provider"
   end
+
+  create_table "oauth_registrations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "oauth_registrations", ["user_id"], name: "index_oauth_registrations_on_user_id"
 
 # Could not dump table "users" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass

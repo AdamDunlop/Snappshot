@@ -21,6 +21,10 @@ class CreateUsersController < ApplicationController
   def edit
   end
 
+  def google
+    redirect_to '/'
+  end
+
   # POST /create_users
   # POST /create_users.json
   def create

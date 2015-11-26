@@ -8,7 +8,7 @@ class CreateUser < ActiveRecord::Base
 
   validates :password, presence: true, length: { minimum: 6 }
   has_secure_password
-# 
+  
   # def self.from_omniauth(auth)
   #   where(auth.slice(:provider, :id)).first_or_initialize.tap do |create_user|
   #     create_user.provider = auth.provider

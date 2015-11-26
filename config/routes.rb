@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
   
   get 'create_users/new'
+
+  get '/auth/google_oauth2/callback', to: 'create_users#google'
   
   get "admin" => "admin#index"
   resource :sessions, only: [:new, :create, :destroy]
@@ -19,11 +21,12 @@ Rails.application.routes.draw do
   resource :sessions
 
   
+  # devise_for :create_users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+
   
   resources :business_cards 
-  #   resource :create_users
-  # end
-  
+
+
   resources :create_users, only: [:new, :create]
   # root to: 'business_cards#index'
 

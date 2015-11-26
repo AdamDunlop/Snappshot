@@ -21,6 +21,11 @@ class BusinessCardsController < ApplicationController
   # GET /business_cards/1
   # GET /business_cards/1.json
   def show
+    raw_text_filtered = @business_card.ocr_text.gsub(/[^a-zA-Z0-9\s\.@\-_]+/, '')
+    @email_parsed = /(\b[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\b)/i.match(raw_text_filtered)[1]
+    @phone_parsed = /(\d{3}[\.\/-_]?\d{3}[\.\/-_\s]?\d{4})/i.match(raw_text_filtered)[1]
+    # @full_name_parsed = @email 
+    # @address_parsed = /\d{1,6}\s[a-z]{1,15}\s[a-z]{1,15}\s[a-z]{1,6}/.match(raw_text_filtered)[1]
   end
 
   # GET /business_cards/new

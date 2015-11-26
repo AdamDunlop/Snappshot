@@ -1,9 +1,6 @@
 <div class="container"; style="color:#666699">
-
-<div style="min-height:150px;">
-
+  <div style="min-height:150px;">
   <% if current_user %> 
-
     <%= form_for @business_card,remote: true, :html => {id: "imageform"}  do |f| %>
       <% if @business_card.errors.any? %>
         <div id="error_explanation">
@@ -15,7 +12,6 @@
           </ul>
         </div>
       <% end %> 
-
       <div class="row">
         <div class="col-md-2">
           <div id="image_attachment">
@@ -42,8 +38,8 @@
     <div id="buttons">
       <input type="button" id="clear" value="Clear">
     </div>
-</canvas>
-<br>
+</canvas><br>
+
 <div class="row">
   <div class="col-md-2" style="padding-right:50px">
     <button id="rotateLeft" class="btn btn-info btn-lrg"><span class="glyphicon glyphicon-chevron-left">90°</span></button>
@@ -63,12 +59,12 @@
     <div class="col-md-2">
     <input type="range" id="scale-image" value="100" min="0" max="255"></span> <!--scale image -->
     </div>
-      <br><br>
+      <br><br><br>
     <label>Threshold:  <input type="checkbox" id="threshold"></label>
       <br>
     <div class="col-md-2" style="centered">
       <input type="range" id="threshold-value" value="50" min="0" max="100">
-    </div><br><br>
+    </div><br><br><br>
     <label>Grayscale: <input type="checkbox" id="grayscale" ></label>
     <br>
     <label>Sharpen: <input type="checkbox" id="sharpen"></label>
@@ -78,8 +74,7 @@
     <div class="col-md-2" style="centered">
     <input type="range" id="brightness-value" value="100" min="-100" max="255">
     </div>
-    <br>
-    <br>
+    <br><br><br>
     <label>Invert: <input type="checkbox" id="invert" ></label>  
     <br><br><br><br>
 
