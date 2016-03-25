@@ -21,6 +21,10 @@ class CreateUsersController < ApplicationController
   def edit
   end
 
+  def google
+    redirect_to '/'
+  end
+
   # POST /create_users
   # POST /create_users.json
   def create
@@ -70,6 +74,6 @@ class CreateUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def create_user_params
-      params.require(:create_user).permit(:name, :email, :password, :password_confirmation, :phone_number)
+      params.require(:create_user).permit(:name, :phone_number, :email, :password, :password_confirmation)
     end
 end

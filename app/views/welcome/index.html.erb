@@ -1,11 +1,16 @@
-<div style='float:right; width: auto; padding-right:403px; color:#666699'>
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" href="/sessions/new">Sign In</button>
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2" href="/create_users/new">Sign up</button>
+<div style='float:left; width: auto; padding-left:403px;'>
+      <% if current_user %>
+       <%= button_to("Logout", sessions_path("current"),  id: 'button', class: "btn btn-danger btn-lg", method: :delete) %>
+      <% else %>
+        <a type="button" class="btn btn-danger btn-lg" href="/auth/google_oauth2" style="color:#fffff"> <span class="glyphicon glyphicon-plus"></span> Google login</a>
+      <% end %>
 </div>
+<div style='float:right; padding-right:403px; width: auto; color:#666699'>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Sign In</button>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Sign up</button>
+</div>
+ <br>
 
-  <span style="padding-left: 200px; color:#666699"><% if current_user %>Welcome, <b><%= current_user.name.capitalize %></b></span>
-  <% end %>
-  <br>
   <br>
   <br>
 
@@ -19,14 +24,16 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
 // <%  if current_user %>
   <% @business_cards.each_with_index do |business_card, i| %>
 L.marker([<%=business_card.latitude%>, <%=business_card.longitude%>]).addTo(map);
+var popup = L.popup()
+    .setLatLng([<%=business_card.latitude%>, <%=business_card.longitude%>])
+    .setContent('<p>Click Me!</p>')
+    .addTo(map);
+
   <% end %>
 // <% end %>
    
-  
-
 </script>
-
-  <br>
+<br>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -37,7 +44,7 @@ L.marker([<%=business_card.latitude%>, <%=business_card.longitude%>]).addTo(map)
   <% end %>
   </ol>
 
-  <div style="float: left; padding-left:403px; width: auto;">
+  <div style="float: left; padding-left:404px; width: auto;">
     <%= button_to 'Add a New Businesscard', new_business_card_path, id: 'button', class: "btn btn-info btn-lg", :method => :get %>
   </div>
   <div style="float: right; padding-right:400px; width: auto;">  
@@ -69,31 +76,62 @@ L.marker([<%=business_card.latitude%>, <%=business_card.longitude%>]).addTo(map)
   </a>
   <br>
 </div>
-<br>
-<br>
+<br><br>
 <div style="padding-left:300px">
-
-  <!-- Modal -->
+  <!--signin Modal -->
   <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-md">
-
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
+          <div class="row", style="color:#8585AD">
+           <hr style="width:95%">
+            <div class="col-lg-6 col-md-offset-1">
+              <h2 class="modal-title"><b>Sign In</b></h2>
+              <br>
+              <%= form_tag sessions_path do %> 
+                <%=label_tag "phone" %><br>
+                <%=text_field_tag "phone_number", '7789895565', autofocus: true, style: "width: 400px" %><br><br>
+                <%=label_tag "email" %><br>
+                <%=text_field_tag "email", 'adamd@mail.com', style: "width: 400px"  %><br><br>
+                <%=label_tag "password" %><br>
+                <%=password_field_tag "password", '123456', style: "width: 400px"  %><br><br>
+                <b><%=button_tag "Login", class: "btn btn-info"  %></b>
+              <% end %>
+              <br>
+            </div>
+          </div>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <br>           
       </div>
     </div>
   </div>
-
-  <!-- Modal -->
+<div style="padding-left:300px">
+  <!-- signup Modal -->
   <div id="myModal2" class="modal fade" role="dialog">
     <div class="modal-dialog modal-md">
-
     <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
+        <hr style="width:99%">
+          <div class="row", style="color:#8585AD; padding-left:60px; width: auto">
+           <h2 class="modal-title"><b>Sign Up</b></h2>
+                <br>  
+            <%= form_tag create_users_path do %>
+              <%= label_tag :name %><br>
+              <%= text_field_tag "create_user[name]", "", style: "width: 400px"  %><br><br>
+              <%= label_tag :phone_number %><br>
+              <%= telephone_field_tag "create_user[phone_number]", "", style: "width: 400px" %><br><br>
+              <%= label_tag :email %><br>
+              <%= text_field_tag "create_user[email]", "", style: "width: 400px"  %><br><br>
+              <%= label_tag :password %><br>
+              <%= password_field_tag "create_user[password]", "", style: "width: 400px"  %><br><br>   
+              <%= label_tag :confirmation %><br>
+              <%= password_field_tag "create_user[password_confirmation]", "", style: "width: 400px"  %><br><br>
+              <%= button_tag "Sign up", class: "btn btn-info"  %><br><br>
+            <% end %>
+          </div>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
       <br>
@@ -103,9 +141,53 @@ L.marker([<%=business_card.latitude%>, <%=business_card.longitude%>]).addTo(map)
 <br>
 <br>
 </div>
-  
+</div>  
 
 
+<div class="jumbotron" align="center">
+    <div align="center" id="player"><iframe id="player" type="text/html" width="640" height="390"
+    src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com"
+    frameborder="0"></iframe></div>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '600',
+          width: '1000',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+    
   <div class="navbar-footer">
     <div class="row">
       <ul class="nav navbar-nav">
