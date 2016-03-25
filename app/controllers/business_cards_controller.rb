@@ -41,6 +41,7 @@ class BusinessCardsController < ApplicationController
 
     @business_card = BusinessCard.new(business_card_params)
     # #BEGIN ocr text extrtaction
+    
     file = params[:business_card][:image].tempfile.path
     e = Tesseract::Engine.new { |e| e.language = :eng 
       e.blacklist = '|' 
